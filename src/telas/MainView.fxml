@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="telas.MainViewController">
+   <content>
+      <VBox prefHeight="595.0" prefWidth="894.0">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="Alunos">
+                  <items>
+                    <MenuItem fx:id="menuItemAlunoNovo" mnemonicParsing="false" onAction="#onMenuItemAlunoNovo" text="Novo Cadastro" />
+                        <MenuItem fx:id="menuItemAlunoAtualiza" mnemonicParsing="false" onAction="#onMenuItemAlunoAtualiza" text="Atualiza Cadastro" />
+                        <MenuItem fx:id="menuItemAlunoRemove" mnemonicParsing="false" onAction="#onMenuItemAlunoRemove" text="Remove Cadastro" />
+                  </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="Professores">
+                    <items>
+                        <MenuItem fx:id="menuItemProfessorNovo" mnemonicParsing="false" onAction="#onMenuItemProfessorNovo" text="Novo Cadastro" />
+                      <MenuItem fx:id="menuItemProfessorAtualiza" mnemonicParsing="false" onAction="#onMenuItemProfessorAtualiza" text="Atualiza Cadastro" />
+                        <MenuItem fx:id="menuItemProfessorRemove" mnemonicParsing="false" onAction="#onMenuItemProfessorRemove" text="Remove Cadastro" />
+                    </items>
+                  </Menu>
+                <Menu mnemonicParsing="false" text="Turmas">
+                  <items>
+                        <MenuItem fx:id="menuItemTurmaNova" mnemonicParsing="false" onAction="#onMenuItemTurmaNova" text="Novo Cadastro" />
+                        <MenuItem fx:id="menuItemTurmaAtualiza" mnemonicParsing="false" onAction="#onMenuItemTurmaAtualiza" text="Atualiza Cadastro" />
+                    <MenuItem fx:id="menuItemTurmaRemove" mnemonicParsing="false" onAction="#onMenuItemTurmaRemove" text="Remove Cadastro" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Relatorios">
+                  <items>
+                    <MenuItem fx:id="menuItemRelatoriosAlunosMatriculados" mnemonicParsing="false" onAction="#onMenuItemRelatoriosAlunosMatriculados" text="Alunos Matricuados" />
+                        <MenuItem fx:id="menuItemRelatoriosAlunosEmEspera" mnemonicParsing="false" onAction="#onMenuItemRelatoriosAlunosEmEspera" text="Fila de Espera" />
+                        <MenuItem fx:id="menuItemRelatoriosExAlunos" mnemonicParsing="false" onAction="#onMenuItemRelatoriosExAlunos" text="Ex Alunos" />
+                        <MenuItem fx:id="menuItemRelatorioDiario" mnemonicParsing="false" onAction="#onMenuItemRelatorioDiario" onMenuValidation="#onMenuItemRelatorioDiario" text="Diário de Classe" />
+                        <MenuItem fx:id="menuItemRelatoriosMatriz" mnemonicParsing="false" onAction="#onMenuItemRelatoriosMatrizProfessor" text="Matriz de Horário Professor" />
+                        <MenuItem fx:id="menuItemRelatoriosMatriz1" mnemonicParsing="false" onAction="#onMenuItemRelatoriosMatrizAluno" text="Matriz de Horário Aluno" />
+                  </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="Ajuda">
+                    <items>
+                      <MenuItem fx:id="menuItemSobre" mnemonicParsing="false" onAction="#onMenuItemSobre" onMenuValidation="#onMenuItemSobre" text="Ajuda" />
+                    </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
