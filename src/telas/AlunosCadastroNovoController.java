@@ -1,6 +1,8 @@
 package telas;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -14,10 +16,32 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
+import utilAlerts.CPF;
 
 public class AlunosCadastroNovoController implements Initializable {
 
 	@FXML
+    private ToggleGroup Alergia;
+
+    @FXML
+    private ToggleGroup Beneficio;
+
+    @FXML
+    private ToggleGroup BolsaFamilia;
+
+    @FXML
+    private ToggleGroup CadUnico;
+
+    @FXML
+    private ToggleGroup Cirurgia;
+
+    @FXML
+    private ToggleGroup Deficiencia;
+
+    @FXML
+    private ToggleGroup Encaminha;
+
+    @FXML
     private TextField IdEnderecoTrabalho;
 
     @FXML
@@ -39,37 +63,19 @@ public class AlunosCadastroNovoController implements Initializable {
     private RadioButton IdRemedioControladoSim;
 
     @FXML
-    private ToggleGroup Status;
+    private ToggleGroup Moradia;
 
     @FXML
-    private ToggleGroup ToggleBeneficio;
+    private ToggleGroup REmedio;
 
     @FXML
-    private ToggleGroup ToggleBolsaFamilia;
+    private ToggleGroup Remedio;
 
     @FXML
-    private ToggleGroup ToggleCadUnico;
-
-    @FXML
-    private ToggleGroup ToggleMoradia;
-
-    @FXML
-    private ToggleGroup ToggleSociais;
-
-    @FXML
-    private ToggleGroup TroggleCirurgia;
-
-    @FXML
-    private ToggleGroup TroggleDeficiencia;
+    private ToggleGroup Situacao;
 
     @FXML
     private ToggleGroup TroggleDoenca;
-
-    @FXML
-    private ToggleGroup TroggleRemedio;
-
-    @FXML
-    private ToggleGroup TroggleSaude;
 
     @FXML
     private RadioButton idAlergiaNao;
@@ -253,23 +259,28 @@ public class AlunosCadastroNovoController implements Initializable {
 
     @FXML
     private ComboBox<String> idSexoAluno;
-   
 
-    @FXML
-    void onButtonCancelarAction(ActionEvent event) {
-System.out.println("BOTAO ccaacceellaarr NA TELA ATUALIZA .....");
-    }
 
-    @FXML
-    void onButtonSalvarAction(ActionEvent event) {
-    	System.out.println("BOTAO ATUALIZA NA TELA ATUALIZA .....");
-    }
 
+	@FXML
+	void onButtonCancelarAction(ActionEvent event) {
+		System.out.println("BOTAO ccaacceellaarr NA TELA ATUALIZA .....");
+	}
+
+	@FXML
+	void onButtonSalvarAction(ActionEvent event) {
+		System.out.println("BOTAO Salvar NA TELA ATUALIZA .....");
+		System.out.println(idNomeAluno.getText());
+		idCpfAluno.setText(CPF.formartCpf(idCpfAluno.getText()));
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		idSexoAluno.getItems().addAll("Masculino","Feminino","Não declarado");
-	
+		idSexoAluno.getItems().addAll("Masculino", "Feminino", "Não declarado");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate localDate = LocalDate.now();
+		System.out.println(dtf.format(localDate));
+		idDataCadastro.setText(dtf.format(localDate));
 	}
 
 }

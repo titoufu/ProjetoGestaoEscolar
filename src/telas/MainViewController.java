@@ -15,9 +15,9 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import utilAlerts.Alerts;
+import utilAlerts.CPF;
 
 public class MainViewController implements Initializable {
-
 	@FXML
 	private MenuItem menuItemAlunoNovo;
 	@FXML
@@ -133,7 +133,6 @@ public class MainViewController implements Initializable {
 		System.out.println("Matriz Professor");
 	}
 
-
 	public synchronized void loadView(String absoluteName) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 		try {
@@ -151,7 +150,9 @@ public class MainViewController implements Initializable {
 	}
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		
+		
+        System.out.printf(CPF.formartCpf("023-697.8;10"));
 	}
 
 }

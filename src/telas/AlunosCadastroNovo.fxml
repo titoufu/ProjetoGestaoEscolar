@@ -66,7 +66,7 @@
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="idDataCadastro" prefHeight="25.0" prefWidth="96.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <TextField fx:id="idDataCadastro" alignment="CENTER" prefHeight="25.0" prefWidth="96.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
@@ -123,7 +123,7 @@
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
-                                    <DatePicker fx:id="idDataNascimentoAluno" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <DatePicker fx:id="idDataNascimentoAluno" nodeOrientation="RIGHT_TO_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
@@ -519,20 +519,20 @@
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="ToggleMoradia" />
+                                          <ToggleGroup fx:id="Moradia" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="idNoradiaAlugada" mnemonicParsing="false" text="Alugada:" textAlignment="CENTER" toggleGroup="$ToggleMoradia" GridPane.columnIndex="1">
+                                    <RadioButton fx:id="idNoradiaAlugada" mnemonicParsing="false" text="Alugada:" textAlignment="CENTER" toggleGroup="$Moradia" GridPane.columnIndex="1">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </RadioButton>
-                                    <RadioButton fx:id="idNoradiaFinanciada" mnemonicParsing="false" text="Financiada:" textAlignment="CENTER" toggleGroup="$ToggleMoradia" GridPane.columnIndex="2">
+                                    <RadioButton fx:id="idNoradiaFinanciada" mnemonicParsing="false" text="Financiada:" textAlignment="CENTER" toggleGroup="$Moradia" GridPane.columnIndex="2">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </RadioButton>
-                                    <RadioButton fx:id="idNoradiaCedida" mnemonicParsing="false" text="Cedida:" textAlignment="CENTER" toggleGroup="$ToggleMoradia" GridPane.columnIndex="3">
+                                    <RadioButton fx:id="idNoradiaCedida" mnemonicParsing="false" text="Cedida:" textAlignment="CENTER" toggleGroup="$Moradia" GridPane.columnIndex="3">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
                                        </GridPane.margin>
@@ -600,10 +600,10 @@
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="TroggleSaude" />
+                                          <ToggleGroup fx:id="Alergia" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="idAlergiaSim" mnemonicParsing="false" text="SIM" toggleGroup="$TroggleSaude" GridPane.columnIndex="2">
+                                    <RadioButton fx:id="idAlergiaSim" mnemonicParsing="false" text="SIM" toggleGroup="$Alergia" GridPane.columnIndex="2">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
@@ -645,10 +645,10 @@
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="TroggleDeficiencia" />
+                                          <ToggleGroup fx:id="Deficiencia" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="idDeficienciaSim" mnemonicParsing="false" text="SIM" toggleGroup="$TroggleDeficiencia" GridPane.columnIndex="2">
+                                    <RadioButton fx:id="idDeficienciaSim" mnemonicParsing="false" text="SIM" toggleGroup="$Deficiencia" GridPane.columnIndex="2">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
@@ -690,10 +690,10 @@
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="TroggleCirurgia" />
+                                          <ToggleGroup fx:id="Cirurgia" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="idCirurgiaSim" mnemonicParsing="false" text="SIM" toggleGroup="$TroggleCirurgia" GridPane.columnIndex="2">
+                                    <RadioButton fx:id="idCirurgiaSim" mnemonicParsing="false" text="SIM" toggleGroup="$Cirurgia" GridPane.columnIndex="2">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
@@ -780,13 +780,16 @@
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="TroggleRemedio" />
+                                          <ToggleGroup fx:id="REmedio" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="IdRemedioControladoSim" mnemonicParsing="false" text="SIM" toggleGroup="$TroggleRemedio" GridPane.columnIndex="2">
+                                    <RadioButton fx:id="IdRemedioControladoSim" mnemonicParsing="false" text="SIM" GridPane.columnIndex="2">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="Remedio" />
+                                       </toggleGroup>
                                     </RadioButton>
                                     <Label text="Qual?" GridPane.columnIndex="3">
                                        <padding>
@@ -834,10 +837,10 @@
                                     </Label>
                                     <RadioButton fx:id="idBolsaFamiliaSim" mnemonicParsing="false" text="SIM" GridPane.columnIndex="1">
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="ToggleBolsaFamilia" />
+                                          <ToggleGroup fx:id="BolsaFamilia" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="idBolsaFamiliaNao" mnemonicParsing="false" text="NÃO" toggleGroup="$ToggleBolsaFamilia" GridPane.columnIndex="2" />
+                                    <RadioButton fx:id="idBolsaFamiliaNao" mnemonicParsing="false" text="NÃO" toggleGroup="$BolsaFamilia" GridPane.columnIndex="2" />
                                     <Label text="Recebe algum Benefício do Governo:" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
@@ -845,9 +848,9 @@
                                     </Label>
                                     <RadioButton fx:id="idBeneficioSim" mnemonicParsing="false" text="SIM" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="ToggleBeneficio" />
+                                          <ToggleGroup fx:id="Beneficio" />
                                        </toggleGroup></RadioButton>
-                                    <RadioButton fx:id="idBeneficioNao" mnemonicParsing="false" text="NÃO" toggleGroup="$ToggleBeneficio" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <RadioButton fx:id="idBeneficioNao" mnemonicParsing="false" text="NÃO" toggleGroup="$Beneficio" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                     <Label text="Está Inscrita no Cadastro Único" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
@@ -855,9 +858,9 @@
                                     </Label>
                                     <RadioButton fx:id="idCadastroUnicoSim" mnemonicParsing="false" text="SIM" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="ToggleCadUnico" />
+                                          <ToggleGroup fx:id="CadUnico" />
                                        </toggleGroup></RadioButton>
-                                    <RadioButton fx:id="idCadastroUnicoNao" mnemonicParsing="false" text="NÃO" toggleGroup="$ToggleCadUnico" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <RadioButton fx:id="idCadastroUnicoNao" mnemonicParsing="false" text="NÃO" toggleGroup="$CadUnico" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                     <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="94.0" text="Número do CIS:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <TextField fx:id="idNumeroCIS" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                        <GridPane.margin>
@@ -888,14 +891,14 @@
                                  <children>
                                     <RadioButton fx:id="idEncaminhaVaraInfancia" mnemonicParsing="false" text="Vara da Infância" GridPane.columnIndex="1">
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="ToggleSociais" />
+                                          <ToggleGroup fx:id="Encaminha" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="idEncaminhaConselhoTutelar" mnemonicParsing="false" text="Conselho Tutelar" toggleGroup="$ToggleSociais" GridPane.columnIndex="2" />
-                                    <RadioButton fx:id="idEncaminhaCemaia" mnemonicParsing="false" text="Cemaia" toggleGroup="$ToggleSociais" GridPane.columnIndex="3" />
-                                    <RadioButton fx:id="idEncaminhaCaps" mnemonicParsing="false" text="Caps" toggleGroup="$ToggleSociais" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                    <RadioButton fx:id="idEncaminhaBemSocial" mnemonicParsing="false" text="Bem social" toggleGroup="$ToggleSociais" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <RadioButton fx:id="idEncaminhaVontadePropria" mnemonicParsing="false" text="Vontade proṕria" toggleGroup="$ToggleSociais" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <RadioButton fx:id="idEncaminhaConselhoTutelar" mnemonicParsing="false" text="Conselho Tutelar" toggleGroup="$Encaminha" GridPane.columnIndex="2" />
+                                    <RadioButton fx:id="idEncaminhaCemaia" mnemonicParsing="false" text="Cemaia" toggleGroup="$Encaminha" GridPane.columnIndex="3" />
+                                    <RadioButton fx:id="idEncaminhaCaps" mnemonicParsing="false" text="Caps" toggleGroup="$Encaminha" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <RadioButton fx:id="idEncaminhaBemSocial" mnemonicParsing="false" text="Bem social" toggleGroup="$Encaminha" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <RadioButton fx:id="idEncaminhaVontadePropria" mnemonicParsing="false" text="Vontade proṕria" toggleGroup="$Encaminha" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                               <GridPane>
@@ -943,9 +946,17 @@
                      </VBox.margin>
                   </Label>
                   <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="100.0" text="Cursando">
+                     <VBox.margin>
+                        <Insets left="2.0" top="20.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
                      <toggleGroup>
-                        <ToggleGroup fx:id="Status" />
+                        <ToggleGroup fx:id="Situacao" />
                      </toggleGroup>
+                  </RadioButton>
+                  <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="100.0" text="Em espera" toggleGroup="$Situacao">
                      <VBox.margin>
                         <Insets left="2.0" top="20.0" />
                      </VBox.margin>
@@ -953,7 +964,7 @@
                         <Insets right="20.0" />
                      </padding>
                   </RadioButton>
-                  <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="100.0" text="Em espera" toggleGroup="$Status">
+                  <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="100.0" text="Formado" toggleGroup="$Situacao">
                      <VBox.margin>
                         <Insets left="2.0" top="20.0" />
                      </VBox.margin>
@@ -961,15 +972,7 @@
                         <Insets right="20.0" />
                      </padding>
                   </RadioButton>
-                  <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="100.0" text="Formado" toggleGroup="$Status">
-                     <VBox.margin>
-                        <Insets left="2.0" top="20.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets right="20.0" />
-                     </padding>
-                  </RadioButton>
-                  <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="100.0" text="Desligado" toggleGroup="$Status">
+                  <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="100.0" text="Desligado" toggleGroup="$Situacao">
                      <VBox.margin>
                         <Insets left="2.0" top="20.0" />
                      </VBox.margin>
