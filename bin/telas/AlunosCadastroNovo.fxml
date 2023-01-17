@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="871.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="telas.AlunosCadastroNovoController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="871.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="telas.AlunosCadastroAtualizaController">
    <children>
       <BorderPane prefHeight="713.0" prefWidth="1280.0">
          <center>
@@ -66,17 +66,17 @@
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="idDataCadastro" alignment="CENTER" prefHeight="25.0" prefWidth="96.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <TextField fx:id="idDataCadastro" prefHeight="25.0" prefWidth="96.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="idCodigo" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <TextField fx:id="idId" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <Label prefHeight="17.0" prefWidth="171.0" text="Código:" GridPane.columnIndex="2">
+                                    <Label prefHeight="17.0" prefWidth="171.0" text="Id:" visible="false" GridPane.columnIndex="2">
                                        <padding>
                                           <Insets left="2.0" />
                                        </padding>
@@ -123,7 +123,7 @@
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
-                                    <DatePicker fx:id="idDataNascimentoAluno" nodeOrientation="RIGHT_TO_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <DatePicker fx:id="idDataNascimentoAluno" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
@@ -167,12 +167,12 @@
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
+                                    <Label text="CEP:" GridPane.columnIndex="3">
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
                                     <TextField fx:id="idRuaAluno" prefHeight="25.0" prefWidth="393.0" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets right="10.0" />
-                                       </GridPane.margin>
-                                    </TextField>
-                                    <TextField fx:id="idCepAluno" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
@@ -182,14 +182,14 @@
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <Label text="CEP:" GridPane.columnIndex="3">
-                                       <padding>
-                                          <Insets left="10.0" />
-                                       </padding>
-                                    </Label>
                                     <TextField fx:id="idBairroAluno" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
+                                       </GridPane.margin>
+                                    </TextField>
+                                    <TextField fx:id="idCepAluno" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
                                  </children>
@@ -225,7 +225,7 @@
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="idCelFixoAluno" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <TextField fx:id="idTelFixoAluno" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
@@ -237,7 +237,7 @@
                                     </TextField>
                                  </children>
                               </GridPane>
-                              <GridPane fx:id="idEscolaAluno">
+                              <GridPane>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="704.0" minWidth="10.0" prefWidth="283.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="552.0" minWidth="10.0" prefWidth="102.0" />
@@ -263,7 +263,7 @@
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="393.0" GridPane.rowIndex="1">
+                                    <TextField fx:id="idEscolaAluno" prefHeight="25.0" prefWidth="393.0" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
@@ -307,6 +307,7 @@
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
+                                    <Label text="Celular:" GridPane.columnIndex="3" />
                                     <TextField fx:id="IdNomeMae" prefHeight="25.0" prefWidth="393.0" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
@@ -322,7 +323,6 @@
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <Label text="Celular:" GridPane.columnIndex="3" />
                                     <TextField fx:id="idCelularMae" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
@@ -367,12 +367,12 @@
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="idCelularPai" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                    <TextField fx:id="idCpfPai" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="idCpfPai" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <TextField fx:id="idCelularPai" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
@@ -417,17 +417,17 @@
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
+                                    <TextField fx:id="idCpfResponsavel" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets right="10.0" />
+                                       </GridPane.margin>
+                                    </TextField>
                                     <TextField fx:id="idCelularResponsavel" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
                                     <Label text="CPF:" GridPane.columnIndex="2" />
-                                    <TextField fx:id="idCpfResponsavel" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets right="10.0" />
-                                       </GridPane.margin>
-                                    </TextField>
                                  </children>
                               </GridPane>
                               <GridPane>
@@ -514,25 +514,25 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <RadioButton fx:id="idNoradiaPropria" mnemonicParsing="false" text="Própria:" textAlignment="CENTER">
+                                    <RadioButton fx:id="idMoradiaPropria" mnemonicParsing="false" selected="true" text="Própria" textAlignment="CENTER">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="Moradia" />
+                                          <ToggleGroup fx:id="GrupoMoradia" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="idNoradiaAlugada" mnemonicParsing="false" text="Alugada:" textAlignment="CENTER" toggleGroup="$Moradia" GridPane.columnIndex="1">
+                                    <RadioButton fx:id="idMoradiaAlugada" mnemonicParsing="false" text="Alugada" textAlignment="CENTER" toggleGroup="$GrupoMoradia" GridPane.columnIndex="1">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </RadioButton>
-                                    <RadioButton fx:id="idNoradiaFinanciada" mnemonicParsing="false" text="Financiada:" textAlignment="CENTER" toggleGroup="$Moradia" GridPane.columnIndex="2">
+                                    <RadioButton fx:id="idMoradiaFinanciada" mnemonicParsing="false" text="Financiada" textAlignment="CENTER" toggleGroup="$GrupoMoradia" GridPane.columnIndex="2">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </RadioButton>
-                                    <RadioButton fx:id="idNoradiaCedida" mnemonicParsing="false" text="Cedida:" textAlignment="CENTER" toggleGroup="$Moradia" GridPane.columnIndex="3">
+                                    <RadioButton fx:id="idMoradiaCedida" mnemonicParsing="false" text="Cedida" textAlignment="CENTER" toggleGroup="$GrupoMoradia" GridPane.columnIndex="3">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
                                        </GridPane.margin>
@@ -560,7 +560,7 @@
                                           <Insets bottom="5.0" top="5.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="278.0" GridPane.columnIndex="1">
+                                    <TextField fx:id="idNumeroPessoasMoradia" prefHeight="25.0" prefWidth="278.0" GridPane.columnIndex="1">
                                        <GridPane.margin>
                                           <Insets bottom="5.0" top="5.0" />
                                        </GridPane.margin>
@@ -595,15 +595,15 @@
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <RadioButton fx:id="idAlergiaNao" mnemonicParsing="false" text="NÃO" GridPane.columnIndex="1">
+                                    <RadioButton fx:id="idAlergiaNao" mnemonicParsing="false" selected="true" text="NÃO" GridPane.columnIndex="1">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="Alergia" />
+                                          <ToggleGroup fx:id="GrupoAlergia" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="idAlergiaSim" mnemonicParsing="false" text="SIM" toggleGroup="$Alergia" GridPane.columnIndex="2">
+                                    <RadioButton fx:id="idAlergiaSim" mnemonicParsing="false" text="SIM" toggleGroup="$GrupoAlergia" GridPane.columnIndex="2">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
@@ -613,7 +613,7 @@
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <TextField fx:id="idAlergiaQual" GridPane.columnIndex="4">
+                                    <TextField fx:id="idAlergiaQual" promptText="Tipo de alergia." GridPane.columnIndex="4">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
@@ -640,15 +640,15 @@
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <RadioButton fx:id="idDeficienciaNao" mnemonicParsing="false" text="NÃO" GridPane.columnIndex="1">
+                                    <RadioButton fx:id="idDeficienciaNao" mnemonicParsing="false" selected="true" text="NÃO" GridPane.columnIndex="1">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="Deficiencia" />
+                                          <ToggleGroup fx:id="GrupoDeficiencia" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="idDeficienciaSim" mnemonicParsing="false" text="SIM" toggleGroup="$Deficiencia" GridPane.columnIndex="2">
+                                    <RadioButton fx:id="idDeficienciaSim" mnemonicParsing="false" text="SIM" toggleGroup="$GrupoDeficiencia" GridPane.columnIndex="2">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
@@ -658,7 +658,7 @@
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <TextField fx:id="idDeficienciaQual" GridPane.columnIndex="4">
+                                    <TextField fx:id="idDeficienciaQual" promptText="Tipo de deficiencia." GridPane.columnIndex="4">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
@@ -685,15 +685,15 @@
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <RadioButton fx:id="idCirurgiaNao" mnemonicParsing="false" text="NÃO" GridPane.columnIndex="1">
+                                    <RadioButton fx:id="idCirurgiaNao" mnemonicParsing="false" selected="true" text="NÃO" GridPane.columnIndex="1">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="Cirurgia" />
+                                          <ToggleGroup fx:id="GrupoCirurgia" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="idCirurgiaSim" mnemonicParsing="false" text="SIM" toggleGroup="$Cirurgia" GridPane.columnIndex="2">
+                                    <RadioButton fx:id="idCirurgiaSim" mnemonicParsing="false" text="SIM" toggleGroup="$GrupoCirurgia" GridPane.columnIndex="2">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
@@ -703,7 +703,7 @@
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <TextField fx:id="idCirurgiaQual" GridPane.columnIndex="4">
+                                    <TextField fx:id="idCirurgiaQual" promptText="Tipo de Cirurgia." GridPane.columnIndex="4">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
@@ -730,15 +730,15 @@
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <RadioButton fx:id="idDoencaNao" mnemonicParsing="false" text="NÃO" GridPane.columnIndex="1">
+                                    <RadioButton fx:id="idDoencaNao" mnemonicParsing="false" selected="true" text="NÃO" GridPane.columnIndex="1">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="TroggleDoenca" />
+                                          <ToggleGroup fx:id="GrupoDoenca" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="idDoencaSim" mnemonicParsing="false" text="SIM" toggleGroup="$TroggleDoenca" GridPane.columnIndex="2">
+                                    <RadioButton fx:id="idDoencaSim" mnemonicParsing="false" text="SIM" toggleGroup="$GrupoDoenca" GridPane.columnIndex="2">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
@@ -748,7 +748,7 @@
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <TextField fx:id="idDoencaQual" GridPane.columnIndex="4">
+                                    <TextField fx:id="idDoencaQual" promptText="Tipo de doenca." GridPane.columnIndex="4">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
@@ -775,28 +775,25 @@
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <RadioButton fx:id="IdRemedioControladoNao" mnemonicParsing="false" text="NÃO" GridPane.columnIndex="1">
+                                    <RadioButton fx:id="IdRemedioControladoNao" mnemonicParsing="false" selected="true" text="NÃO" GridPane.columnIndex="1">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="REmedio" />
+                                          <ToggleGroup fx:id="GrupoRemedio" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="IdRemedioControladoSim" mnemonicParsing="false" text="SIM" GridPane.columnIndex="2">
+                                    <RadioButton fx:id="IdRemedioControladoSim" mnemonicParsing="false" text="SIM" toggleGroup="$GrupoRemedio" GridPane.columnIndex="2">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="Remedio" />
-                                       </toggleGroup>
                                     </RadioButton>
                                     <Label text="Qual?" GridPane.columnIndex="3">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <TextField fx:id="IdRemedioControladoQual" GridPane.columnIndex="4">
+                                    <TextField fx:id="IdRemedioControladoQual" promptText="Tipo de remedio." GridPane.columnIndex="4">
                                        <padding>
                                           <Insets bottom="5.0" left="10.0" top="5.0" />
                                        </padding>
@@ -837,10 +834,10 @@
                                     </Label>
                                     <RadioButton fx:id="idBolsaFamiliaSim" mnemonicParsing="false" text="SIM" GridPane.columnIndex="1">
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="BolsaFamilia" />
+                                          <ToggleGroup fx:id="GrupoBolsaFamilia" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="idBolsaFamiliaNao" mnemonicParsing="false" text="NÃO" toggleGroup="$BolsaFamilia" GridPane.columnIndex="2" />
+                                    <RadioButton fx:id="idBolsaFamiliaNao" mnemonicParsing="false" selected="true" text="NÃO" toggleGroup="$GrupoBolsaFamilia" GridPane.columnIndex="2" />
                                     <Label text="Recebe algum Benefício do Governo:" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
@@ -848,9 +845,9 @@
                                     </Label>
                                     <RadioButton fx:id="idBeneficioSim" mnemonicParsing="false" text="SIM" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="Beneficio" />
+                                          <ToggleGroup fx:id="GrupoBeneficio" />
                                        </toggleGroup></RadioButton>
-                                    <RadioButton fx:id="idBeneficioNao" mnemonicParsing="false" text="NÃO" toggleGroup="$Beneficio" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <RadioButton fx:id="idBeneficioNao" mnemonicParsing="false" selected="true" text="NÃO" toggleGroup="$GrupoBeneficio" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                     <Label text="Está Inscrita no Cadastro Único" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
@@ -858,9 +855,9 @@
                                     </Label>
                                     <RadioButton fx:id="idCadastroUnicoSim" mnemonicParsing="false" text="SIM" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="CadUnico" />
+                                          <ToggleGroup fx:id="GrupoCadUnico" />
                                        </toggleGroup></RadioButton>
-                                    <RadioButton fx:id="idCadastroUnicoNao" mnemonicParsing="false" text="NÃO" toggleGroup="$CadUnico" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <RadioButton fx:id="idCadastroUnicoNao" mnemonicParsing="false" selected="true" text="NÃO" toggleGroup="$GrupoCadUnico" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                     <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="94.0" text="Número do CIS:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <TextField fx:id="idNumeroCIS" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                        <GridPane.margin>
@@ -891,14 +888,14 @@
                                  <children>
                                     <RadioButton fx:id="idEncaminhaVaraInfancia" mnemonicParsing="false" text="Vara da Infância" GridPane.columnIndex="1">
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="Encaminha" />
+                                          <ToggleGroup fx:id="GrupoEncaminha" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="idEncaminhaConselhoTutelar" mnemonicParsing="false" text="Conselho Tutelar" toggleGroup="$Encaminha" GridPane.columnIndex="2" />
-                                    <RadioButton fx:id="idEncaminhaCemaia" mnemonicParsing="false" text="Cemaia" toggleGroup="$Encaminha" GridPane.columnIndex="3" />
-                                    <RadioButton fx:id="idEncaminhaCaps" mnemonicParsing="false" text="Caps" toggleGroup="$Encaminha" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                    <RadioButton fx:id="idEncaminhaBemSocial" mnemonicParsing="false" text="Bem social" toggleGroup="$Encaminha" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <RadioButton fx:id="idEncaminhaVontadePropria" mnemonicParsing="false" text="Vontade proṕria" toggleGroup="$Encaminha" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <RadioButton fx:id="idEncaminhaConselhoTutelar" mnemonicParsing="false" text="Conselho Tutelar" toggleGroup="$GrupoEncaminha" GridPane.columnIndex="2" />
+                                    <RadioButton fx:id="idEncaminhaCemaia" mnemonicParsing="false" text="Cemaia" toggleGroup="$GrupoEncaminha" GridPane.columnIndex="3" />
+                                    <RadioButton fx:id="idEncaminhaCaps" mnemonicParsing="false" text="Caps" toggleGroup="$GrupoEncaminha" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <RadioButton fx:id="idEncaminhaBemSocial" mnemonicParsing="false" text="Bem social" toggleGroup="$GrupoEncaminha" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <RadioButton fx:id="idEncaminhaVontadePropria" mnemonicParsing="false" text="Vontade proṕria" toggleGroup="$GrupoEncaminha" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                               <GridPane>
@@ -953,10 +950,10 @@
                         <Insets right="20.0" />
                      </padding>
                      <toggleGroup>
-                        <ToggleGroup fx:id="Situacao" />
+                        <ToggleGroup fx:id="GrupoSituacao" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="100.0" text="Em espera" toggleGroup="$Situacao">
+                  <RadioButton fx:id="idSelecaoEmEspera" alignment="CENTER_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="100.0" selected="true" text="Em espera" toggleGroup="$GrupoSituacao">
                      <VBox.margin>
                         <Insets left="2.0" top="20.0" />
                      </VBox.margin>
@@ -964,7 +961,7 @@
                         <Insets right="20.0" />
                      </padding>
                   </RadioButton>
-                  <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="100.0" text="Formado" toggleGroup="$Situacao">
+                  <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="100.0" text="Formado" toggleGroup="$GrupoSituacao">
                      <VBox.margin>
                         <Insets left="2.0" top="20.0" />
                      </VBox.margin>
@@ -972,7 +969,7 @@
                         <Insets right="20.0" />
                      </padding>
                   </RadioButton>
-                  <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="100.0" text="Desligado" toggleGroup="$Situacao">
+                  <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="100.0" text="Desligado" toggleGroup="$GrupoSituacao">
                      <VBox.margin>
                         <Insets left="2.0" top="20.0" />
                      </VBox.margin>
@@ -986,9 +983,9 @@
          <left>
             <AnchorPane prefHeight="629.0" prefWidth="77.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="idLabelAtualiza" alignment="CENTER" contentDisplay="CENTER" layoutX="-206.0" layoutY="317.0" prefHeight="25.0" prefWidth="490.0" rotate="270.0" text="Novo ... Novo ... Novo ... Novo ... Novo ... Novo ... Novo " textFill="#f20a16" AnchorPane.bottomAnchor="317.0" AnchorPane.leftAnchor="-206.0" AnchorPane.rightAnchor="-207.0" AnchorPane.topAnchor="317.0">
+                  <Label fx:id="idLabelAtualiza" alignment="CENTER" contentDisplay="CENTER" layoutX="-273.0" layoutY="291.0" prefHeight="47.0" prefWidth="623.0" rotate="270.0" text="NOVO CADASTRO ... NOVO CADASTRO ... NOVO CADASTRO ... NOVO CADASTRO ... NOVO CADASTRO ... NOVO CADASTRO ... NOVO CADASTRO ... NOVO CADASTRO ... NOVO CADASTRO ... NOVO CADASTRO ... " textFill="#f20a16" AnchorPane.bottomAnchor="291.0" AnchorPane.leftAnchor="-273.0" AnchorPane.rightAnchor="-273.0" AnchorPane.topAnchor="291.0">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="10.0" />
                      </font>
                      <opaqueInsets>
                         <Insets />

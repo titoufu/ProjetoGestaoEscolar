@@ -1,6 +1,7 @@
-package entities;
+package model.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Aluno implements Serializable {
@@ -8,13 +9,14 @@ public class Aluno implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String nomeAluno;
-	private Date dataCadastro;
+	private String dataCadastro;
 	private String codigo;
 	private String situacao;
 	private String rgAluno;
 	private String cpfAluno;
-	private Date dataNascimentoAluno;
-	private String ruaAluno;
+	private String dataNascimentoAluno;
+	private String sexo;
+	private String nomeRuaAluno;
 	private Integer numeroRuaAluno;
 	private String bairroAluno;
 	private String cepAluno;
@@ -40,33 +42,26 @@ public class Aluno implements Serializable {
 	private Integer numeroTrabalho;
 	private String cepTrabalho;
 	private String moradia;
-	private Boolean alergia;
+	private Integer numeroPessoasNaMoradia;
+	private String alergia;
 	private String alergiaQual;
-	private Boolean deficiencia;
+	private String deficiencia;
 	private String deficienciaQual;
-	private Boolean cirurgia;
+	private String cirurgia;
 	private String cirurgiaQual;
-	private Boolean doenca;
+	private String doenca;
 	private String doencaQual;
-	private Boolean remedio;
+	private String remedio;
 	private String remedioQual;
-	private Boolean bolsaFamilia;
-	private Boolean beneficio;
-	private Boolean cadastroUnico;
+	private String bolsaFamilia;
+	private String beneficio;
+	private String cadastroUnico;
 	private String numeroCIS;
 	private String encaminha;
 	private String encaminhaOutra;
 
 	public Aluno() {
 
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getNomeAluno() {
@@ -77,11 +72,11 @@ public class Aluno implements Serializable {
 		this.nomeAluno = nomeAluno;
 	}
 
-	public Date getDataCadastro() {
+	public String getDataCadastro() {
 		return dataCadastro;
 	}
 
-	public void setDataCadastro(Date dataCadastro) {
+	public void setDataCadastro(String dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 
@@ -117,20 +112,28 @@ public class Aluno implements Serializable {
 		this.cpfAluno = cpfAluno;
 	}
 
-	public Date getDataNascimentoAluno() {
+	public String getDataNascimentoAluno() {
 		return dataNascimentoAluno;
 	}
 
-	public void setDataNascimentoAluno(Date dataNascimentoAluno) {
+	public void setDataNascimentoAluno(String dataNascimentoAluno) {
 		this.dataNascimentoAluno = dataNascimentoAluno;
 	}
 
-	public String getRuaAluno() {
-		return ruaAluno;
+	public String getSexo() {
+		return sexo;
 	}
 
-	public void setRuaAluno(String ruaAluno) {
-		this.ruaAluno = ruaAluno;
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public String getNomeRuaAluno() {
+		return nomeRuaAluno;
+	}
+
+	public void setNomeRuaAluno(String string) {
+		this.nomeRuaAluno = string;
 	}
 
 	public Integer getNumeroRuaAluno() {
@@ -169,8 +172,8 @@ public class Aluno implements Serializable {
 		return telFixoAluno;
 	}
 
-	public void setTelFixoAluno(String telFixoAluno) {
-		this.telFixoAluno = telFixoAluno;
+	public void setTelFixoAluno(String string) {
+		this.telFixoAluno = string;
 	}
 
 	public String getEmailAluno() {
@@ -333,11 +336,19 @@ public class Aluno implements Serializable {
 		this.moradia = moradia;
 	}
 
-	public Boolean getAlergia() {
+	public Integer getNumeroPessoasNaMoradia() {
+		return numeroPessoasNaMoradia;
+	}
+
+	public void setNumeroPessoasNaMoradia(Integer numeroPessoasNaMoradia) {
+		this.numeroPessoasNaMoradia = numeroPessoasNaMoradia;
+	}
+
+	public String getAlergia() {
 		return alergia;
 	}
 
-	public void setAlergia(Boolean alergia) {
+	public void setAlergia(String alergia) {
 		this.alergia = alergia;
 	}
 
@@ -349,11 +360,11 @@ public class Aluno implements Serializable {
 		this.alergiaQual = alergiaQual;
 	}
 
-	public Boolean getDeficiencia() {
+	public String getDeficiencia() {
 		return deficiencia;
 	}
 
-	public void setDeficiencia(Boolean deficiencia) {
+	public void setDeficiencia(String deficiencia) {
 		this.deficiencia = deficiencia;
 	}
 
@@ -365,11 +376,11 @@ public class Aluno implements Serializable {
 		this.deficienciaQual = deficienciaQual;
 	}
 
-	public Boolean getCirurgia() {
+	public String getCirurgia() {
 		return cirurgia;
 	}
 
-	public void setCirurgia(Boolean cirurgia) {
+	public void setCirurgia(String cirurgia) {
 		this.cirurgia = cirurgia;
 	}
 
@@ -381,11 +392,11 @@ public class Aluno implements Serializable {
 		this.cirurgiaQual = cirurgiaQual;
 	}
 
-	public Boolean getDoenca() {
+	public String getDoenca() {
 		return doenca;
 	}
 
-	public void setDoenca(Boolean doenca) {
+	public void setDoenca(String doenca) {
 		this.doenca = doenca;
 	}
 
@@ -397,11 +408,11 @@ public class Aluno implements Serializable {
 		this.doencaQual = doencaQual;
 	}
 
-	public Boolean getRemedio() {
+	public String getRemedio() {
 		return remedio;
 	}
 
-	public void setRemedio(Boolean remedio) {
+	public void setRemedio(String remedio) {
 		this.remedio = remedio;
 	}
 
@@ -413,27 +424,27 @@ public class Aluno implements Serializable {
 		this.remedioQual = remedioQual;
 	}
 
-	public Boolean getBolsaFamilia() {
+	public String getBolsaFamilia() {
 		return bolsaFamilia;
 	}
 
-	public void setBolsaFamilia(Boolean bolsaFamilia) {
+	public void setBolsaFamilia(String bolsaFamilia) {
 		this.bolsaFamilia = bolsaFamilia;
 	}
 
-	public Boolean getBeneficio() {
+	public String getBeneficio() {
 		return beneficio;
 	}
 
-	public void setBeneficio(Boolean beneficio) {
+	public void setBeneficio(String beneficio) {
 		this.beneficio = beneficio;
 	}
 
-	public Boolean getCadastroUnico() {
+	public String getCadastroUnico() {
 		return cadastroUnico;
 	}
 
-	public void setCadastroUnico(Boolean cadastroUnico) {
+	public void setCadastroUnico(String cadastroUnico) {
 		this.cadastroUnico = cadastroUnico;
 	}
 
@@ -441,8 +452,8 @@ public class Aluno implements Serializable {
 		return numeroCIS;
 	}
 
-	public void setNumeroCIS(String numeroCIS) {
-		this.numeroCIS = numeroCIS;
+	public void setNumeroCIS(String num) {
+		this.numeroCIS = num;
 	}
 
 	public String getEncaminha() {
@@ -461,8 +472,27 @@ public class Aluno implements Serializable {
 		this.encaminhaOutra = encaminhaOutra;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	@Override
+	public String toString() {
+		return "Aluno [nomeAluno=" + nomeAluno + ", dataCadastro=" + dataCadastro + ", codigo=" + codigo + ", situacao="
+				+ situacao + ", rgAluno=" + rgAluno + ", cpfAluno=" + cpfAluno + ", dataNascimentoAluno="
+				+ dataNascimentoAluno + ", sexo=" + sexo + ", nomeRuaAluno=" + nomeRuaAluno + ", numeroRuaAluno="
+				+ numeroRuaAluno + ", bairroAluno=" + bairroAluno + ", cepAluno=" + cepAluno + ", celularAluno="
+				+ celularAluno + ", telFixoAluno=" + telFixoAluno + ", emailAluno=" + emailAluno + ", escolaAluno="
+				+ escolaAluno + ", periodoAluno=" + periodoAluno + ", anoEscolarAluno=" + anoEscolarAluno + ", nomeMae="
+				+ nomeMae + ", rgMae=" + rgMae + ", cpfMae=" + cpfMae + ", celularMae=" + celularMae + ", nomePai="
+				+ nomePai + ", rgPai=" + rgPai + ", cpfPai=" + cpfPai + ", celularPai=" + celularPai
+				+ ", nomeResponsavel=" + nomeResponsavel + ", rgResponsavel=" + rgResponsavel + ", cpfResponsavel="
+				+ cpfResponsavel + ", celularResponsavel=" + celularResponsavel + ", enderecoTrabalho="
+				+ enderecoTrabalho + ", numeroTrabalho=" + numeroTrabalho + ", cepTrabalho=" + cepTrabalho
+				+ ", moradia=" + moradia + ", numeroPessoasNaMoradia=" + numeroPessoasNaMoradia + ", alergia=" + alergia
+				+ ", alergiaQual=" + alergiaQual + ", deficiencia=" + deficiencia + ", deficienciaQual="
+				+ deficienciaQual + ", cirurgia=" + cirurgia + ", cirurgiaQual=" + cirurgiaQual + ", doenca=" + doenca
+				+ ", doencaQual=" + doencaQual + ", remedio=" + remedio + ", remedioQual=" + remedioQual
+				+ ", bolsaFamilia=" + bolsaFamilia + ", beneficio=" + beneficio + ", cadastroUnico=" + cadastroUnico
+				+ ", numeroCIS=" + numeroCIS + ", encaminha=" + encaminha + ", encaminhaOutra=" + encaminhaOutra + "]";
 	}
+
+	
 
 }

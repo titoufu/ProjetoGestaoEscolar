@@ -53,7 +53,6 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void onMenuItemAlunoNovo() {
-		System.out.println("Aluno Novo");
 		loadView("/telas/AlunosCadastroNovo.fxml");
 	}
 
@@ -128,6 +127,7 @@ public class MainViewController implements Initializable {
 	public void onMenuItemRelatoriosMatrizAluno() {
 		System.out.println("Matriz Aluno");
 	}
+
 	@FXML
 	public void onMenuItemRelatoriosMatrizProfessor() {
 		System.out.println("Matriz Professor");
@@ -151,8 +151,6 @@ public class MainViewController implements Initializable {
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		
-        System.out.printf(CPF.formartCpf("023-697.8;10"));
 	}
 
 }
