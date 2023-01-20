@@ -5,11 +5,11 @@ import model.dao.impl.AlunoDaoJDBC;
 
 public class DaoFactory {
 
-	public static AlunoDao createSellerDao() {
+	public static AlunoDao createAlunoDao() {
 		return new AlunoDaoJDBC(DB.getConnection());
 	}
 	
-//	public static TurmaDao createDepartmentDao() {
+//	public static TurmaDao createTurmamentDao() {
 //		return new TurmaDaoJDBC(DB.getConnection());
 //	}
 }

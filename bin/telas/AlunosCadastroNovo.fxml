@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="871.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="telas.AlunosCadastroAtualizaController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="871.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="telas.AlunosCadastroNovoController">
    <children>
       <BorderPane prefHeight="713.0" prefWidth="1280.0">
          <center>
@@ -128,7 +128,7 @@
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </DatePicker>
-                                    <Label prefHeight="17.0" prefWidth="58.0" text="Sexo:" GridPane.columnIndex="3">
+                                    <Label prefHeight="17.0" prefWidth="58.0" text="Genero:" GridPane.columnIndex="3">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
@@ -817,8 +817,8 @@
                               <GridPane>
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="270.0" minWidth="10.0" prefWidth="270.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="126.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="287.0" minWidth="10.0" prefWidth="287.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="214.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="287.0" minWidth="10.0" prefWidth="195.0" />
                                 </columnConstraints>
                                 <rowConstraints>
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -858,8 +858,8 @@
                                           <ToggleGroup fx:id="GrupoCadUnico" />
                                        </toggleGroup></RadioButton>
                                     <RadioButton fx:id="idCadastroUnicoNao" mnemonicParsing="false" selected="true" text="NÃO" toggleGroup="$GrupoCadUnico" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="94.0" text="Número do CIS:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField fx:id="idNumeroCIS" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                    <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="215.0" text="Número de Identificação Social (NIS):" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="idNumeroNIS" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
@@ -895,7 +895,7 @@
                                     <RadioButton fx:id="idEncaminhaCemaia" mnemonicParsing="false" text="Cemaia" toggleGroup="$GrupoEncaminha" GridPane.columnIndex="3" />
                                     <RadioButton fx:id="idEncaminhaCaps" mnemonicParsing="false" text="Caps" toggleGroup="$GrupoEncaminha" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                                     <RadioButton fx:id="idEncaminhaBemSocial" mnemonicParsing="false" text="Bem social" toggleGroup="$GrupoEncaminha" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <RadioButton fx:id="idEncaminhaVontadePropria" mnemonicParsing="false" text="Vontade proṕria" toggleGroup="$GrupoEncaminha" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <RadioButton fx:id="idEncaminhaVontadePropria" mnemonicParsing="false" selected="true" text="Vontade proṕria" toggleGroup="$GrupoEncaminha" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                               <GridPane>

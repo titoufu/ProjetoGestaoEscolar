@@ -1,3 +1,19 @@
+/*
+ * 
+ * Para cada entidade, haverá um objeto responsável por fazer acesso a dados relacionado a esta
+   entidade. Por exemplo:
+   
+		o Aluno: AlunoDao
+		o Produto: ProdutoDao
+		o Pedido: PedidoDao
+
+  Cada DAO será definido por uma interface.
+  
+ A injeção de dependência pode ser feita por meio do padrão de projeto Factory
+*
+* 
+*
+*/
 package model.dao;
 
 import java.util.List;
@@ -11,5 +27,5 @@ public interface AlunoDao {
 	void deleteById(Integer id);
 	Aluno findById(Integer id);
 	List<Aluno> findAll();
-	//List<Aluno> findByDepartment(Department department);
+	List<Aluno> findByAluno(Aluno aluno);
 }

@@ -14,6 +14,7 @@ import db.DB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -21,415 +22,473 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.GridPane;
+import model.dao.AlunoDao;
+import model.dao.DaoFactory;
 import model.entities.Aluno;
+import utilAlerts.Alerts;
 import utilAlerts.CPF;
+import utilAlerts.Constraints;
 
 public class AlunosCadastroNovoController implements Initializable {
-	Aluno aluno = new Aluno();
+	public Aluno aluno = new Aluno();
+	@FXML
+	private ToggleGroup GrupoAlergia;
 
-    @FXML
-    private ToggleGroup Alergia;
+	@FXML
+	private ToggleGroup GrupoBeneficio;
 
-    @FXML
-    private ToggleGroup Beneficio;
+	@FXML
+	private ToggleGroup GrupoBolsaFamilia;
 
-    @FXML
-    private ToggleGroup BolsaFamilia;
+	@FXML
+	private ToggleGroup GrupoCadUnico;
 
-    @FXML
-    private ToggleGroup CadUnico;
+	@FXML
+	private ToggleGroup GrupoCirurgia;
 
-    @FXML
-    private ToggleGroup Cirurgia;
+	@FXML
+	private ToggleGroup GrupoDeficiencia;
 
-    @FXML
-    private ToggleGroup Deficiencia;
+	@FXML
+	private ToggleGroup GrupoDoenca;
 
-    @FXML
-    private ToggleGroup Encaminha;
+	@FXML
+	private ToggleGroup GrupoEncaminha;
 
-    @FXML
-    private TextField IdEnderecoTrabalho;
+	@FXML
+	private ToggleGroup GrupoMoradia;
 
-    @FXML
-    private TextField IdNomeMae;
+	@FXML
+	private ToggleGroup GrupoRemedio;
 
-    @FXML
-    private TextField IdNomePai;
+	@FXML
+	private ToggleGroup GrupoSituacao;
 
-    @FXML
-    private TextField IdNumeroRuaAluno;
+	@FXML
+	private TextField IdEnderecoTrabalho;
 
-    @FXML
-    private RadioButton IdRemedioControladoNao;
+	@FXML
+	private TextField IdNomeMae;
 
-    @FXML
-    private TextField IdRemedioControladoQual;
+	@FXML
+	private TextField IdNomePai;
 
-    @FXML
-    private RadioButton IdRemedioControladoSim;
+	@FXML
+	private TextField IdNumeroRuaAluno;
 
-    @FXML
-    private ToggleGroup Moradia;
+	@FXML
+	private RadioButton IdRemedioControladoNao;
 
-    @FXML
-    private ToggleGroup REmedio;
+	@FXML
+	private TextField IdRemedioControladoQual;
 
-    @FXML
-    private ToggleGroup Remedio;
+	@FXML
+	private RadioButton IdRemedioControladoSim;
 
-    @FXML
-    private ToggleGroup Situacao;
+	@FXML
+	private RadioButton idAlergiaNao;
 
-    @FXML
-    private ToggleGroup TroggleDoenca;
+	@FXML
+	private TextField idAlergiaQual;
 
-    @FXML
-    private RadioButton idAlergiaNao;
+	@FXML
+	private RadioButton idAlergiaSim;
 
-    @FXML
-    private TextField idAlergiaQual;
+	@FXML
+	private TextField idAnoEscolarAluno;
 
-    @FXML
-    private RadioButton idAlergiaSim;
+	@FXML
+	private TextField idBairroAluno;
 
-    @FXML
-    private TextField idAnoEscolarAluno;
+	@FXML
+	private RadioButton idBeneficioNao;
 
-    @FXML
-    private TextField idBairroAluno;
+	@FXML
+	private RadioButton idBeneficioSim;
 
-    @FXML
-    private RadioButton idBeneficioNao;
+	@FXML
+	private RadioButton idBolsaFamiliaNao;
 
-    @FXML
-    private RadioButton idBeneficioSim;
+	@FXML
+	private RadioButton idBolsaFamiliaSim;
 
-    @FXML
-    private RadioButton idBolsaFamiliaNao;
+	@FXML
+	private Button idButtonCancelar;
 
-    @FXML
-    private RadioButton idBolsaFamiliaSim;
+	@FXML
+	private Button idButtonSalvar;
 
-    @FXML
-    private Button idButtonCancelar;
+	@FXML
+	private RadioButton idCadastroUnicoNao;
 
-    @FXML
-    private Button idButtonSalvar;
+	@FXML
+	private RadioButton idCadastroUnicoSim;
 
-    @FXML
-    private RadioButton idCadastroUnicoNao;
+	@FXML
+	private TextField idCelularAluno;
 
-    @FXML
-    private RadioButton idCadastroUnicoSim;
+	@FXML
+	private TextField idCelularMae;
 
-    @FXML
-    private TextField idTelFixoAluno;
+	@FXML
+	private TextField idCelularPai;
 
-    @FXML
-    private TextField idCelularAluno;
+	@FXML
+	private TextField idCelularResponsavel;
 
-    @FXML
-    private TextField idCelularMae;
+	@FXML
+	private TextField idCepAluno;
 
-    @FXML
-    private TextField idCelularPai;
+	@FXML
+	private TextField idCepTrabalho;
 
-    @FXML
-    private TextField idCelularResponsavel;
+	@FXML
+	private RadioButton idCirurgiaNao;
 
-    @FXML
-    private TextField idCepAluno;
+	@FXML
+	private TextField idCirurgiaQual;
 
-    @FXML
-    private TextField idCepTrabalho;
+	@FXML
+	private RadioButton idCirurgiaSim;
 
-    @FXML
-    private RadioButton idCirurgiaNao;
+	@FXML
+	private TextField idCpfAluno;
 
-    @FXML
-    private TextField idCirurgiaQual;
+	@FXML
+	private TextField idCpfMae;
 
-    @FXML
-    private RadioButton idCirurgiaSim;
+	@FXML
+	private TextField idCpfPai;
 
-    @FXML
-    private TextField idCpfAluno;
+	@FXML
+	private TextField idCpfResponsavel;
 
-    @FXML
-    private TextField idCpfMae;
+	@FXML
+	private TextField idDataCadastro;
 
-    @FXML
-    private TextField idCpfPai;
+	@FXML
+	private DatePicker idDataNascimentoAluno;
 
-    @FXML
-    private TextField idCpfResponsavel;
+	@FXML
+	private RadioButton idDeficienciaNao;
 
-    @FXML
-    private TextField idDataCadastro;
+	@FXML
+	private TextField idDeficienciaQual;
 
-    @FXML
-    private DatePicker idDataNascimentoAluno;
+	@FXML
+	private RadioButton idDeficienciaSim;
 
-    @FXML
-    private RadioButton idDeficienciaNao;
+	@FXML
+	private RadioButton idDoencaNao;
 
-    @FXML
-    private TextField idDeficienciaQual;
+	@FXML
+	private TextField idDoencaQual;
 
-    @FXML
-    private RadioButton idDeficienciaSim;
+	@FXML
+	private RadioButton idDoencaSim;
 
-    @FXML
-    private RadioButton idDoencaNao;
+	@FXML
+	private TextField idEmailAluno;
 
-    @FXML
-    private TextField idDoencaQual;
+	@FXML
+	private RadioButton idEncaminhaBemSocial;
 
-    @FXML
-    private RadioButton idDoencaSim;
+	@FXML
+	private RadioButton idEncaminhaCaps;
 
-    @FXML
-    private TextField idEmailAluno;
+	@FXML
+	private RadioButton idEncaminhaCemaia;
 
-    @FXML
-    private RadioButton idEncaminhaBemSocial;
+	@FXML
+	private RadioButton idEncaminhaConselhoTutelar;
 
-    @FXML
-    private RadioButton idEncaminhaCaps;
+	@FXML
+	private TextField idEncaminhaOutra;
 
-    @FXML
-    private RadioButton idEncaminhaCemaia;
+	@FXML
+	private RadioButton idEncaminhaVaraInfancia;
 
-    @FXML
-    private RadioButton idEncaminhaConselhoTutelar;
+	@FXML
+	private RadioButton idEncaminhaVontadePropria;
 
-    @FXML
-    private TextField idEncaminhaOutra;
+	@FXML
+	private TextField idEscolaAluno;
 
-    @FXML
-    private RadioButton idEncaminhaVaraInfancia;
+	@FXML
+	private TextField idId;
 
-    @FXML
-    private RadioButton idEncaminhaVontadePropria;
+	@FXML
+	private Label idLabelAtualiza;
 
-    @FXML
-    private TextField idEscolaAluno;
+	@FXML
+	private RadioButton idMoradiaAlugada;
 
-    @FXML
-    private TextField idId;
+	@FXML
+	private RadioButton idMoradiaCedida;
 
-    @FXML
-    private Label idLabelAtualiza;
+	@FXML
+	private RadioButton idMoradiaFinanciada;
 
-    @FXML
-    private RadioButton idMoradiaAlugada;
+	@FXML
+	private RadioButton idMoradiaPropria;
 
-    @FXML
-    private RadioButton idMoradiaCedida;
+	@FXML
+	private TextField idNomeAluno;
 
-    @FXML
-    private RadioButton idMoradiaFinanciada;
+	@FXML
+	private TextField idNomeResponsavel;
 
-    @FXML
-    private RadioButton idMoradiaPropria;
-    
-    @FXML
-    private TextField idMoradiaNumeroPessoas;
+	@FXML
+	private TextField idNumeroNIS;
 
-    @FXML
-    private TextField idNomeAluno;
+	@FXML
+	private TextField idNumeroPessoasMoradia;
 
-    @FXML
-    private TextField idNomeResponsavel;
+	@FXML
+	private TextField idNumeroTrabalho;
 
-    @FXML
-    private TextField idNumeroCIS;
+	@FXML
+	private TextField idPeriodoAluno;
 
-    @FXML
-    private TextField idNumeroTrabalho;
+	@FXML
+	private TextField idRgAluno;
 
-    @FXML
-    private TextField idPeriodoAluno;
+	@FXML
+	private TextField idRgMae;
 
-    @FXML
-    private TextField idRgAluno;
+	@FXML
+	private TextField idRgPai;
 
-    @FXML
-    private TextField idRgMae;
+	@FXML
+	private TextField idRgResponsavel;
 
-    @FXML
-    private TextField idRgPai;
+	@FXML
+	private TextField idRuaAluno;
 
-    @FXML
-    private TextField idRgResponsavel;
+	@FXML
+	private RadioButton idSelecaoEmEspera;
 
-    @FXML
-    private TextField idRuaAluno;
-
-    @FXML
-    private RadioButton idSituacaoCursando;
-
-    @FXML
-    private RadioButton idSituacaoDesligado;
-
-    @FXML
-    private RadioButton idSituacaoEmEmpera;
-
-    @FXML
-    private RadioButton idSituacaoFormado;
-    
+	@FXML
 	private ComboBox<String> idSexoAluno;
 
 	@FXML
-	void onToogleAlergia(ActionEvent event) {
-		if (idAlergiaSim.isSelected()) {
-			aluno.setAlergia(true);
-			aluno.setAlergiaQual(idAlergiaQual.getText());
-		} else {
-			aluno.setAlergia(false);
-		}
-	}
-
-	@FXML
-	void onToogleDeficiencia(ActionEvent event) {
-		if (idDeficienciaSim.isSelected()) {
-			aluno.setDeficiencia(true);
-			aluno.setDeficienciaQual(idDeficienciaQual.getText());
-		} else {
-			aluno.setDeficiencia(false);
-		}
-	}
-
-	@FXML
-	void onToogleCirurgia(ActionEvent event) {
-		if (idCirurgiaSim.isSelected()) {
-			aluno.setCirurgia(true);
-			aluno.setCirurgiaQual(idCirurgiaQual.getText());
-		} else {
-			aluno.setCirurgia(false);
-		}
-	}
-
-	@FXML
-	void onToggleDoenca(ActionEvent event) {
-		if (idDoencaSim.isSelected()) {
-			aluno.setDoenca(true);
-			aluno.setDoencaQual(idDoencaQual.getText());
-		} else {
-			aluno.setDoenca(false);
-		}
-	}
-
-	@FXML
-	void onToogleRemedio(ActionEvent event) {
-		if (IdRemedioControladoSim.isSelected()) {
-			aluno.setRemedio(true);
-			aluno.setRemedioQual(IdRemedioControladoQual.getText());
-		} else {
-			aluno.setRemedio(false);
-		}
-	}
-
-	@FXML
-	void onToogleBeneficio(ActionEvent event) {
-		if (idBeneficioSim.isSelected()) {
-			aluno.setBeneficio(true);
-		} else {
-			aluno.setBeneficio(false);
-		}
-	}
-
-	@FXML
-	void onToogleBolsaFamilia(ActionEvent event) {
-		if (idBolsaFamiliaSim.isSelected()) {
-			aluno.setBolsaFamilia(true);
-		} else {
-			aluno.setBolsaFamilia(false);
-		}
-	}
-
-	@FXML
-	void onToogleCadUnico(ActionEvent event) {
-		if (idCadastroUnicoSim.isSelected()) {
-			aluno.setCadastroUnico(true);
-		} else {
-			aluno.setCadastroUnico(false);
-		}
-	}
-
-	@FXML
-	void onToogleEncaminha(ActionEvent event) {
-		if (idEncaminhaBemSocial.isSelected()) {
-			aluno.setEncaminha("Bem Social");
-		} else if (idEncaminhaVaraInfancia.isSelected()) {
-			aluno.setEncaminha("Vara da Infância");
-		} else if (idEncaminhaConselhoTutelar.isSelected()) {
-			aluno.setEncaminha("Conselho Tutelar");
-		} else if (idEncaminhaCemaia.isSelected()) {
-			aluno.setEncaminha("Cemaia");
-		} else if (idEncaminhaVontadePropria.isSelected()) {
-			aluno.setEncaminha("Vontade Própria");
-		} else if (idEncaminhaCaps.isSelected()) {
-			aluno.setEncaminha("Caps");
-		} else
-			aluno.setEncaminha(idEncaminhaOutra.getText());
-	}
-
-	@FXML
-	void onToogleMoradia(ActionEvent event) {
-
-		if (idMoradiaAlugada.isSelected()) {
-			aluno.setMoradia("Alugada");
-		} else if (idMoradiaPropria.isSelected()) {
-			aluno.setMoradia("Própria");
-		} else if (idMoradiaFinanciada.isSelected()) {
-			aluno.setMoradia("Financiada");
-		} else if (idMoradiaCedida.isSelected()) {
-			aluno.setMoradia("Cedida");
-		}
-
-	}
-
-	@FXML
-	void onToogleSituacao(ActionEvent event) {
-		if (idSituacaoCursando.isScaleShape()) {
-			aluno.setSituacao("Cursando");
-		}
-		if (idSituacaoDesligado.isScaleShape()) {
-			aluno.setSituacao("Desligado");
-		}
-		if (idSituacaoEmEmpera.isScaleShape()) {
-			aluno.setSituacao("Em Espera");
-		}
-		if (idSituacaoFormado.isScaleShape()) {
-			aluno.setSituacao("Formado");
-		}
-	}
+	private TextField idTelFixoAluno;
 
 	@FXML
 	void onButtonCancelarAction(ActionEvent event) {
-		System.out.println("BOTAO ccaacceellaarr NA TELA ATUALIZA .....");
+
 	}
 
 	@FXML
 	void onButtonSalvarAction(ActionEvent event) {
-		System.out.println("BOTAO Salvar NA TELA Novo .....");
-		System.out.println(idNomeAluno.getText());
-		idCpfAluno.setText(CPF.formartCpf(idCpfAluno.getText()));
-		Aluno aluno=captura();
-		aluno.toString();
+
+		String msg = new String();
+		msg = lecampo(idNomeAluno, "Nome do Aluno");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setNomeAluno(msg);
+		}
+
+		msg = lecampo(idDataCadastro, "Data do Cadastro");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setDataCadastro(msg);
+		}
+		msg = lecampo(idRgAluno, "RG do Aluno");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setRgAluno(msg);
+		}
+		msg = lecampo(idCpfAluno, "CPF do Aluno");
+		if (msg == null) {
+			return;
+		} else {
+			idCpfAluno.setText(CPF.formartCpf(msg));
+			aluno.setCpfAluno(idCpfAluno.getText());
+		}
+
+		LocalDate value = idDataNascimentoAluno.getValue();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		aluno.setDataNascimentoAluno(dtf.format(value));
+
+		aluno.setSexo(idSexoAluno.getValue());
+		aluno.setNomeRuaAluno(lecampo(idRuaAluno, "Rua do Aluno"));
+
+		msg = lecampo(IdNumeroRuaAluno, "Numero da Rua do Aluno");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setNumeroRuaAluno(Integer.valueOf(IdNumeroRuaAluno.getText()));
+		}
+		msg = lecampo(idBairroAluno, "Bairro do Aluno");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setBairroAluno(msg);
+		}
+		msg = lecampo(idCepAluno, "CEP do Aluno");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setCepAluno(msg);
+		}
+		msg = lecampo(idCelularAluno, "Celular do Aluno");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setCelularAluno(msg);
+		}
+		msg = lecampo(idTelFixoAluno, "Telefone Fixo do Aluno");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setTelFixoAluno(msg);
+		}
+		msg = lecampo(idEmailAluno, "Email do Aluno");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setEmailAluno(msg);
+		}
+		msg = lecampo(idEscolaAluno, "Nome da Escola do Aluno");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setEscolaAluno(msg);
+		}
+		msg = lecampo(idPeriodoAluno, "Periodo do Aluno");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setPeriodoAluno(msg);
+		}
+		msg = lecampo(idAnoEscolarAluno, "Ano Escolar do Aluno");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setAnoEscolarAluno(msg);
+		}
+		msg = lecampo(IdNomeMae, "Nome da Mãe");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setNomeMae(msg);
+		}
+		msg = lecampo(idRgMae, "RG da Mãe");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setRgMae(msg);
+		}
+		msg = lecampo(idCpfMae, "CPF da Mãe");
+		if (msg == null) {
+			return;
+		} else {
+			idCpfMae.setText(CPF.formartCpf(msg));
+			aluno.setCpfMae(idCpfMae.getText());
+		}
+		msg = lecampo(idCelularMae, "Celular da Mãe");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setCelularMae(msg);
+		}
+		msg = lecampo(IdNomePai, "Nome do Pai");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setNomePai(msg);
+		}
+		msg = lecampo(idRgPai, "RG do Pai");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setRgPai(msg);
+		}
+		msg = lecampo(idCpfPai, "CPF do Pai");
+		if (msg == null) {
+			return;
+		} else {
+			idCpfPai.setText(CPF.formartCpf(msg));
+			aluno.setCpfMae(idCpfPai.getText());
+		}
+		msg = lecampo(idCelularPai, "Celular do Pai");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setCelularPai(msg);
+		}
+		msg = lecampo(idNomeResponsavel, "Nome do Responsável");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setNomeResponsavel(msg);
+		}
+		msg = lecampo(idRgResponsavel, "RG do Responsável");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setRgResponsavel(msg);
+		}
+		msg = lecampo(idCpfResponsavel, "CPF do Responsável");
+		if (msg == null) {
+			return;
+		} else {
+			idCpfResponsavel.setText(CPF.formartCpf(msg));
+			aluno.setCpfResponsavel(idCpfResponsavel.getText());
+		}
+		msg = lecampo(idCelularResponsavel, "Celular do Responsável");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setCelularResponsavel(msg);
+		}
+		msg = lecampo(IdEnderecoTrabalho, "Endereço de Trabalho do Responsável");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setNumeroTrabalho(Integer.valueOf(idNumeroTrabalho.getText()));
+		}
+		msg = lecampo(idCepTrabalho, "CEP do Responsável de Trabalho");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setCepTrabalho(msg);
+		}
+		msg = lecampo(idNumeroPessoasMoradia, "Número de Pessoas na Moradia");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setNumeroPessoasNaMoradia(Integer.valueOf(idNumeroPessoasMoradia.getText()));
+		}
+		aluno.setAlergiaQual(idAlergiaQual.getText());
+		aluno.setDeficienciaQual(idDeficienciaQual.getText());
+		aluno.setCirurgiaQual(idCirurgiaQual.getText());
+		aluno.setDoencaQual(idDoencaQual.getText());
+		aluno.setRemedioQual(IdRemedioControladoQual.getText());
+
+		msg = lecampo(idNumeroNIS, "Número NIS");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setNumeroNIS(Integer.valueOf(idNumeroNIS.getText()));
+		}
+		aluno.setEncaminhaOutra(idEncaminhaOutra.getText());
+		System.out.println(aluno.toString());
+		conectar_salvar(aluno);
 	}
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		idSexoAluno.getItems().addAll("Masculino", "Feminino", "Não declarado");
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		LocalDate localDate = LocalDate.now();
-		System.out.println(dtf.format(localDate));
-		idDataCadastro.setText(dtf.format(localDate));
-		/*	Connection conn = null;
+	public void conectar_salvar(Aluno aluno) {
+		
+		AlunoDao alunodao=DaoFactory.createAlunoDao();
+		alunodao.insert(aluno);
+	//	Aluno aluno =alunodao.findById(4);
+	 //   System.out.println(aluno.getNomeAluno());
+		
+	/*	Connection conn = null;
 		PreparedStatement st = null;
 		try {
 			conn = DB.getConnection();
@@ -460,59 +519,114 @@ public class AlunosCadastroNovoController implements Initializable {
 			DB.closeStatement(st);
 			DB.closeConnection();
 		}
-		*/
+*/
 	}
 
-	public Aluno captura() {
-		aluno.setNomeAluno(idNomeAluno.getText());
-		// aluno.setDataCadastro(dtf.format(localDate));
-		aluno.setRgAluno(idRgAluno.getText());
-		aluno.setCpfAluno(idCpfAluno.getText());
-		//aluno.setDataNascimentoAluno(idDataNascimentoAluno.getText());
-		aluno.setRuaAluno(idRuaAluno.getText());
-		aluno.setNumeroRuaAluno(Integer.parseInt(IdNumeroRuaAluno.getText()));
-		aluno.setBairroAluno(idBairroAluno.getText());
-		aluno.setCepAluno(idCepAluno.getText());
-		aluno.setCelularAluno(idCelularAluno.getText());
-		aluno.setTelFixoAluno(Integer.parseInt(idTelFixoAluno.getText()));
-		aluno.setEmailAluno(idEmailAluno.getText());
-		aluno.setEscolaAluno(idEscolaAluno.getText());
-		aluno.setPeriodoAluno(idPeriodoAluno.getText());
-		aluno.setAnoEscolarAluno(idAnoEscolarAluno.getText());
-		aluno.setNomeMae(IdNomeMae.getText());
-		aluno.setRgMae(idRgMae.getText());
-		aluno.setCpfMae(idCpfMae.getText());
-		aluno.setCelularMae(idCelularMae.getText());
-		aluno.setNomePai(IdNomePai.getText());
-		aluno.setRgPai(idRgPai.getText());
-		aluno.setCpfPai(idCpfPai.getText());
-		aluno.setCelularPai(idCelularPai.getText());
-		aluno.setNomeResponsavel(idNomeResponsavel.getText());
-		aluno.setRgResponsavel(idRgResponsavel.getText());
-		aluno.setCpfResponsavel(idCpfResponsavel.getText());
-		aluno.setCelularResponsavel(idCelularResponsavel.getText());
-		aluno.setEnderecoTrabalho(IdEnderecoTrabalho.getText());
-		aluno.setNumeroTrabalho(Integer.parseInt(idNumeroTrabalho.getText()));
-		aluno.setCepTrabalho(idCepTrabalho.getText());
-		aluno.setNumeroCIS(idNumeroCIS.getText());
-		aluno.setNumeroPessoasNaMoradia(Integer.parseInt(idMoradiaNumeroPessoas.getText()));
-		//aluno.setMoradia(idMora.getText());
-		//aluno.setAlergia(idAlergia.getText());
-		//aluno.setAlergiaQual(idAlergiaQual.getText());
-		//aluno.setdeficiencia(idDeficiencia.getText());
-		//aluno.setDeficienciaQual(idDeficienciaQual.getText());
-		//aluno.setCirurgia(idCirurgia.getText());
-		//aluno.setCirurgiaQual(idCirurgiaQual.getText());
-		//aluno.setDoenca(idDoenca.getText());
-		//aluno.setDoencaQual(idDoencaQual.getText());
-		//aluno.setRemedio(idRemedio.getText());
-		//aluno.setRemedioQual(idRemedioQual.getText());
-		//aluno.setBolsaFamilia(idBolsaFamilia.getText());
-		//aluno.setBeneficio(idBeneficio.getText());
-		//aluno.setCadastroUnico(idCadastroUnico.getText());
-		//aluno.setEncaminha(idEncaminha.getText());
-		//aluno.setEncaminhaOutra(idEncaminhaOutra.getText());
-		return aluno;
+	public String lecampo(TextField id, String msg) {
+		if (id.getText().isBlank() || id.getText() == null || id.getText().trim().equals("")) {
+			Alerts.showAlert(null, "CAMPO VAZIO", "Entre com o valor do " + msg, AlertType.ERROR);
+			return null;
+		} else {
+			return id.getText();
+		}
+	}
+
+	public String radioResult(ToggleGroup rB) {
+		RadioButton selectedRadioButton = (RadioButton) rB.getSelectedToggle();
+		String toogleGroupValue = selectedRadioButton.getText();
+		return toogleGroupValue;
+	}
+
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		idSexoAluno.getItems().addAll("Masculino", "Feminino", "Não declarado");
+		idSexoAluno.setValue("Masculino");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate localDate = LocalDate.now();
+		idDataCadastro.setText(dtf.format(localDate));
+		idDataNascimentoAluno.setValue(localDate);
+		aluno.setSituacao("Em espera");
+		aluno.setMoradia("Própria");
+		aluno.setAlergia("NÃo");
+		aluno.setDeficiencia("NÃO");
+		aluno.setCirurgia("NÃO");
+		aluno.setDoenca("NÃO");
+		aluno.setRemedio("NÃO");
+		aluno.setBolsaFamilia("NÃO");
+		aluno.setBeneficio("NÃO");
+		aluno.setCadastroUnico("NÃO");
+		aluno.setEncaminha("Vontade própria");
+
+		Constraints.setTextFieldInteger(IdNumeroRuaAluno);
+		Constraints.setTextFieldInteger(idNumeroPessoasMoradia);
+		Constraints.setTextFieldInteger(idNumeroTrabalho);
+		Constraints.setTextFieldInteger(idNumeroNIS);
+
+		GrupoSituacao.selectedToggleProperty()
+				.addListener((observable, oldVal, newVal) -> aluno.setSituacao(radioResult(GrupoSituacao)));
+		GrupoMoradia.selectedToggleProperty()
+				.addListener((observable, oldVal, newVal) -> aluno.setMoradia(radioResult(GrupoMoradia)));
+		GrupoAlergia.selectedToggleProperty()
+				.addListener((observable, oldVal, newVal) -> aluno.setAlergia(radioResult(GrupoAlergia)));
+		GrupoDeficiencia.selectedToggleProperty()
+				.addListener((observable, oldVal, newVal) -> aluno.setDeficiencia(radioResult(GrupoDeficiencia)));
+		GrupoCirurgia.selectedToggleProperty()
+				.addListener((observable, oldVal, newVal) -> aluno.setCirurgia(radioResult(GrupoCirurgia)));
+		GrupoDoenca.selectedToggleProperty()
+				.addListener((observable, oldVal, newVal) -> aluno.setDoenca(radioResult(GrupoDoenca)));
+		GrupoRemedio.selectedToggleProperty()
+				.addListener((observable, oldVal, newVal) -> aluno.setRemedio(radioResult(GrupoRemedio)));
+		GrupoBolsaFamilia.selectedToggleProperty()
+				.addListener((observable, oldVal, newVal) -> aluno.setBolsaFamilia(radioResult(GrupoBolsaFamilia)));
+		GrupoBeneficio.selectedToggleProperty()
+				.addListener((observable, oldVal, newVal) -> aluno.setBeneficio(radioResult(GrupoBeneficio)));
+		GrupoCadUnico.selectedToggleProperty()
+				.addListener((observable, oldVal, newVal) -> aluno.setCadastroUnico(radioResult(GrupoCadUnico)));
+		GrupoEncaminha.selectedToggleProperty()
+				.addListener((observable, oldVal, newVal) -> aluno.setEncaminha(radioResult(GrupoEncaminha)));
+		
+		
+		// controlando o tamanho dos campos 
+		
+		Constraints.setTextFieldMaxLength(idNomeAluno,60);
+		Constraints.setTextFieldMaxLength(idDataCadastro,10);
+		Constraints.setTextFieldMaxLength(idRgAluno,15);
+		Constraints.setTextFieldMaxLength(idCpfAluno,15);
+		Constraints.setTextFieldMaxLength(idRuaAluno,10);
+		Constraints.setTextFieldMaxLength(IdNumeroRuaAluno,4);
+		Constraints.setTextFieldMaxLength(idBairroAluno,60);
+		Constraints.setTextFieldMaxLength(idCepAluno,20);
+		Constraints.setTextFieldMaxLength(idCelularAluno,15);
+		Constraints.setTextFieldMaxLength(idTelFixoAluno,20);
+		Constraints.setTextFieldMaxLength(idEmailAluno,60);
+		Constraints.setTextFieldMaxLength(idEscolaAluno,60);
+		Constraints.setTextFieldMaxLength(idPeriodoAluno,10);
+		Constraints.setTextFieldMaxLength(idAnoEscolarAluno,10);
+		Constraints.setTextFieldMaxLength(IdNomeMae,60);
+		Constraints.setTextFieldMaxLength(idRgMae,15);
+		Constraints.setTextFieldMaxLength(idCpfMae,15);
+		Constraints.setTextFieldMaxLength(idCelularMae,15);
+		Constraints.setTextFieldMaxLength(IdNomePai,60);
+		Constraints.setTextFieldMaxLength(idRgPai,15);
+		Constraints.setTextFieldMaxLength(idCpfPai,15);
+		Constraints.setTextFieldMaxLength(idCelularPai,15);
+		Constraints.setTextFieldMaxLength(idNomeResponsavel,60);
+		Constraints.setTextFieldMaxLength(idRgResponsavel,20);
+		Constraints.setTextFieldMaxLength(idCpfResponsavel,15);
+		Constraints.setTextFieldMaxLength(idCelularResponsavel,15);
+		Constraints.setTextFieldMaxLength(IdEnderecoTrabalho,60);
+		Constraints.setTextFieldMaxLength(idNumeroTrabalho,4);
+		Constraints.setTextFieldMaxLength(idCepTrabalho,20);
+		Constraints.setTextFieldMaxLength(idNumeroPessoasMoradia,2);
+		Constraints.setTextFieldMaxLength(idAlergiaQual,60);
+		Constraints.setTextFieldMaxLength(idDeficienciaQual,60);
+		Constraints.setTextFieldMaxLength(idCirurgiaQual,60);
+		Constraints.setTextFieldMaxLength(idDoencaQual,60);
+		Constraints.setTextFieldMaxLength(IdRemedioControladoQual,60);
+		Constraints.setTextFieldMaxLength(idNumeroNIS,11);
+		Constraints.setTextFieldMaxLength(idEncaminhaOutra,60);
+
+
 		
 	}
+
 }

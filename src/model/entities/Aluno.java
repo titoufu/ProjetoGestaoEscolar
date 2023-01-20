@@ -1,8 +1,6 @@
 package model.entities;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.Date;
 
 public class Aluno implements Serializable {
 
@@ -56,7 +54,7 @@ public class Aluno implements Serializable {
 	private String bolsaFamilia;
 	private String beneficio;
 	private String cadastroUnico;
-	private String numeroCIS;
+	private Integer numeroNIS;
 	private String encaminha;
 	private String encaminhaOutra;
 
@@ -448,12 +446,12 @@ public class Aluno implements Serializable {
 		this.cadastroUnico = cadastroUnico;
 	}
 
-	public String getNumeroCIS() {
-		return numeroCIS;
+	public Integer getNumeroNIS() {
+		return numeroNIS;
 	}
 
-	public void setNumeroCIS(String num) {
-		this.numeroCIS = num;
+	public void setNumeroNIS(Integer num) {
+		this.numeroNIS = num;
 	}
 
 	public String getEncaminha() {
@@ -470,6 +468,18 @@ public class Aluno implements Serializable {
 
 	public void setEncaminhaOutra(String encaminhaOutra) {
 		this.encaminhaOutra = encaminhaOutra;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
@@ -490,9 +500,7 @@ public class Aluno implements Serializable {
 				+ deficienciaQual + ", cirurgia=" + cirurgia + ", cirurgiaQual=" + cirurgiaQual + ", doenca=" + doenca
 				+ ", doencaQual=" + doencaQual + ", remedio=" + remedio + ", remedioQual=" + remedioQual
 				+ ", bolsaFamilia=" + bolsaFamilia + ", beneficio=" + beneficio + ", cadastroUnico=" + cadastroUnico
-				+ ", numeroCIS=" + numeroCIS + ", encaminha=" + encaminha + ", encaminhaOutra=" + encaminhaOutra + "]";
+				+ ", numeroNIS=" + numeroNIS + ", encaminha=" + encaminha + ", encaminhaOutra=" + encaminhaOutra + "]";
 	}
-
-	
 
 }
