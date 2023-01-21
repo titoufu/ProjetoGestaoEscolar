@@ -1,16 +1,10 @@
 package telas;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-import db.DB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,9 +56,6 @@ public class AlunosCadastroNovoController implements Initializable {
 	private ToggleGroup GrupoRemedio;
 
 	@FXML
-	private ToggleGroup GrupoSituacao;
-
-	@FXML
 	private TextField IdEnderecoTrabalho;
 
 	@FXML
@@ -95,7 +86,7 @@ public class AlunosCadastroNovoController implements Initializable {
 	private RadioButton idAlergiaSim;
 
 	@FXML
-	private TextField idAnoEscolarAluno;
+	private ComboBox<String> idAnoEscolarAluno;
 
 	@FXML
 	private TextField idBairroAluno;
@@ -201,9 +192,14 @@ public class AlunosCadastroNovoController implements Initializable {
 
 	@FXML
 	private RadioButton idEncaminhaConselhoTutelar;
+	@FXML
+	private RadioButton idEncaminhaOutra;
 
 	@FXML
-	private TextField idEncaminhaOutra;
+	private Label idEncaminhaOutraLabel;
+
+	@FXML
+	private TextField idEncaminhaOutraTxt;
 
 	@FXML
 	private RadioButton idEncaminhaVaraInfancia;
@@ -248,14 +244,25 @@ public class AlunosCadastroNovoController implements Initializable {
 	private TextField idNumeroTrabalho;
 
 	@FXML
-	private TextField idPeriodoAluno;
+	private ComboBox<String> idPeriodoAluno;
+	@FXML
+	private Label idQualAlergia;
 
+	@FXML
+	private Label idQualCirurgia;
+
+	@FXML
+	private Label idQualDeficiencia;
+
+	@FXML
+	private Label idQualDoenca;
+
+	@FXML
+	private Label idQualRemedio;
 	@FXML
 	private TextField idRgAluno;
-
 	@FXML
 	private TextField idRgMae;
-
 	@FXML
 	private TextField idRgPai;
 
@@ -264,9 +271,6 @@ public class AlunosCadastroNovoController implements Initializable {
 
 	@FXML
 	private TextField idRuaAluno;
-
-	@FXML
-	private RadioButton idSelecaoEmEspera;
 
 	@FXML
 	private ComboBox<String> idSexoAluno;
@@ -284,26 +288,26 @@ public class AlunosCadastroNovoController implements Initializable {
 
 		String msg = new String();
 		msg = lecampo(idNomeAluno, "Nome do Aluno");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setNomeAluno(msg);
 		}
 
 		msg = lecampo(idDataCadastro, "Data do Cadastro");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setDataCadastro(msg);
 		}
 		msg = lecampo(idRgAluno, "RG do Aluno");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setRgAluno(msg);
 		}
 		msg = lecampo(idCpfAluno, "CPF do Aluno");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			idCpfAluno.setText(CPF.formartCpf(msg));
@@ -315,211 +319,250 @@ public class AlunosCadastroNovoController implements Initializable {
 		aluno.setDataNascimentoAluno(dtf.format(value));
 
 		aluno.setSexo(idSexoAluno.getValue());
+
 		aluno.setNomeRuaAluno(lecampo(idRuaAluno, "Rua do Aluno"));
 
 		msg = lecampo(IdNumeroRuaAluno, "Numero da Rua do Aluno");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setNumeroRuaAluno(Integer.valueOf(IdNumeroRuaAluno.getText()));
 		}
 		msg = lecampo(idBairroAluno, "Bairro do Aluno");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setBairroAluno(msg);
 		}
 		msg = lecampo(idCepAluno, "CEP do Aluno");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setCepAluno(msg);
 		}
 		msg = lecampo(idCelularAluno, "Celular do Aluno");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setCelularAluno(msg);
 		}
 		msg = lecampo(idTelFixoAluno, "Telefone Fixo do Aluno");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setTelFixoAluno(msg);
 		}
 		msg = lecampo(idEmailAluno, "Email do Aluno");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setEmailAluno(msg);
 		}
 		msg = lecampo(idEscolaAluno, "Nome da Escola do Aluno");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setEscolaAluno(msg);
 		}
-		msg = lecampo(idPeriodoAluno, "Periodo do Aluno");
-		if (msg == null) {
-			return;
-		} else {
-			aluno.setPeriodoAluno(msg);
-		}
-		msg = lecampo(idAnoEscolarAluno, "Ano Escolar do Aluno");
-		if (msg == null) {
-			return;
-		} else {
-			aluno.setAnoEscolarAluno(msg);
-		}
+
+		aluno.setPeriodoAluno(idPeriodoAluno.getValue());
+		aluno.setAnoEscolarAluno(idAnoEscolarAluno.getValue());
+
 		msg = lecampo(IdNomeMae, "Nome da Mãe");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setNomeMae(msg);
 		}
 		msg = lecampo(idRgMae, "RG da Mãe");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setRgMae(msg);
 		}
 		msg = lecampo(idCpfMae, "CPF da Mãe");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			idCpfMae.setText(CPF.formartCpf(msg));
 			aluno.setCpfMae(idCpfMae.getText());
 		}
 		msg = lecampo(idCelularMae, "Celular da Mãe");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setCelularMae(msg);
 		}
 		msg = lecampo(IdNomePai, "Nome do Pai");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setNomePai(msg);
 		}
 		msg = lecampo(idRgPai, "RG do Pai");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setRgPai(msg);
 		}
 		msg = lecampo(idCpfPai, "CPF do Pai");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			idCpfPai.setText(CPF.formartCpf(msg));
 			aluno.setCpfMae(idCpfPai.getText());
 		}
 		msg = lecampo(idCelularPai, "Celular do Pai");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setCelularPai(msg);
 		}
 		msg = lecampo(idNomeResponsavel, "Nome do Responsável");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setNomeResponsavel(msg);
 		}
 		msg = lecampo(idRgResponsavel, "RG do Responsável");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setRgResponsavel(msg);
 		}
 		msg = lecampo(idCpfResponsavel, "CPF do Responsável");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			idCpfResponsavel.setText(CPF.formartCpf(msg));
 			aluno.setCpfResponsavel(idCpfResponsavel.getText());
 		}
 		msg = lecampo(idCelularResponsavel, "Celular do Responsável");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setCelularResponsavel(msg);
 		}
 		msg = lecampo(IdEnderecoTrabalho, "Endereço de Trabalho do Responsável");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setNumeroTrabalho(Integer.valueOf(idNumeroTrabalho.getText()));
 		}
 		msg = lecampo(idCepTrabalho, "CEP do Responsável de Trabalho");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setCepTrabalho(msg);
 		}
 		msg = lecampo(idNumeroPessoasMoradia, "Número de Pessoas na Moradia");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setNumeroPessoasNaMoradia(Integer.valueOf(idNumeroPessoasMoradia.getText()));
+
 		}
-		aluno.setAlergiaQual(idAlergiaQual.getText());
-		aluno.setDeficienciaQual(idDeficienciaQual.getText());
-		aluno.setCirurgiaQual(idCirurgiaQual.getText());
-		aluno.setDoencaQual(idDoencaQual.getText());
-		aluno.setRemedioQual(IdRemedioControladoQual.getText());
+		if (radioResult(GrupoAlergia).equals("SIM")) {
+			msg = lecampo(idAlergiaQual, "Tipo de Alergia");
+			if (msg==null) {
+				return;
+			} else {
+				aluno.setAlergiaQual(msg);
+			}
+		}
+		if (radioResult(GrupoDeficiencia).equals("SIM")) {
+			msg = lecampo(idDeficienciaQual, "Tipo de Dediciência");
+			if (msg==null) {
+				return;
+			} else {
+				aluno.setDeficienciaQual(msg);
+			}
+		}
+		;
+		if (radioResult(GrupoCirurgia).equals("SIM")) {
+			msg = lecampo(idDeficienciaQual, "Tipo de Cirurgia");
+			if (msg==null) {
+				return;
+			} else {
+				aluno.setCirurgiaQual(msg);
+			}
+		}
+		;
+		if (radioResult(GrupoDoenca).equals("SIM")) {
+			msg = lecampo(idDoencaQual, "Tipo de Doença");
+			if (msg==null) {
+				return;
+			} else {
+				aluno.setDoencaQual(msg);
+			}
+		}
+		;
+
+		if (radioResult(GrupoRemedio).equals("SIM")) {
+			msg = lecampo(IdRemedioControladoQual, "Tipo de Remédio");
+			if (msg==null) {
+				return;
+			} else {
+				aluno.setRemedioQual(msg);
+			}
+		}
+		
+//		aluno.setAlergiaQual(idAlergiaQual.getText());
+//		aluno.setDeficienciaQual(idDeficienciaQual.getText());
+//		aluno.setCirurgiaQual(idCirurgiaQual.getText());
+//		aluno.setDoencaQual(idDoencaQual.getText());
+//		aluno.setRemedioQual(IdRemedioControladoQual.getText());
+//
+//		aluno.setDeficienciaQual(idDeficienciaQual.getText());
+//		aluno.setCirurgiaQual(idCirurgiaQual.getText());
+//		aluno.setDoencaQual(idDoencaQual.getText());
+//		aluno.setRemedioQual(IdRemedioControladoQual.getText());
 
 		msg = lecampo(idNumeroNIS, "Número NIS");
-		if (msg == null) {
+		if (msg==null) {
 			return;
 		} else {
 			aluno.setNumeroNIS(Integer.valueOf(idNumeroNIS.getText()));
 		}
-		aluno.setEncaminhaOutra(idEncaminhaOutra.getText());
+
+		aluno.setEncaminhaOutra(idEncaminhaOutraTxt.getText());
+		
+		
+		if (radioResult(GrupoEncaminha).equals("Outra")) {
+			msg = lecampo(idEncaminhaOutraTxt, "Outra Forma de Encaminhamento");
+			if (msg==null) {
+				return;
+			} else {
+				aluno.setEncaminhaOutra(msg);
+			}
+		}
 		System.out.println(aluno.toString());
 		conectar_salvar(aluno);
 	}
 
 	public void conectar_salvar(Aluno aluno) {
-		
-		AlunoDao alunodao=DaoFactory.createAlunoDao();
+
+		AlunoDao alunodao = DaoFactory.createAlunoDao();
 		alunodao.insert(aluno);
-	//	Aluno aluno =alunodao.findById(4);
-	 //   System.out.println(aluno.getNomeAluno());
-		
-	/*	Connection conn = null;
-		PreparedStatement st = null;
-		try {
-			conn = DB.getConnection();
+		// Aluno aluno =alunodao.findById(4);
+		// System.out.println(aluno.getNomeAluno());
 
-			// EXAMPLE 1:
-			st = conn.prepareStatement("INSERT INTO aluno " + "(NomeAluno) " + "VALUES " + "(?)",
-					Statement.RETURN_GENERATED_KEYS);
-
-			st.setString(1, "Tito");
-			int rowsAffected = st.executeUpdate();
-
-			if (rowsAffected > 0) {
-				ResultSet rs = st.getGeneratedKeys();
-				while (rs.next()) {
-					int id = rs.getInt(1);
-					System.out.println("Done! Id: " + id);
-				}
-			} else {
-				System.out.println("No rows affected!");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} //
-			// catch (ParseException e) {
-			// e.printStackTrace();
-			// }
-		finally {
-			DB.closeStatement(st);
-			DB.closeConnection();
-		}
-*/
+		/*
+		 * Connection conn = null; PreparedStatement st = null; try { conn =
+		 * DB.getConnection();
+		 * 
+		 * // EXAMPLE 1: st = conn.prepareStatement("INSERT INTO aluno " +
+		 * "(NomeAluno) " + "VALUES " + "(?)", Statement.RETURN_GENERATED_KEYS);
+		 * 
+		 * st.setString(1, "Tito"); int rowsAffected = st.executeUpdate();
+		 * 
+		 * if (rowsAffected > 0) { ResultSet rs = st.getGeneratedKeys(); while
+		 * (rs.next()) { int id = rs.getInt(1); System.out.println("Done! Id: " + id); }
+		 * } else { System.out.println("No rows affected!"); } } catch (SQLException e)
+		 * { e.printStackTrace(); } // // catch (ParseException e) { //
+		 * e.printStackTrace(); // } finally { DB.closeStatement(st);
+		 * DB.closeConnection(); }
+		 */
 	}
 
 	public String lecampo(TextField id, String msg) {
@@ -538,8 +581,17 @@ public class AlunosCadastroNovoController implements Initializable {
 	}
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
+
 		idSexoAluno.getItems().addAll("Masculino", "Feminino", "Não declarado");
 		idSexoAluno.setValue("Masculino");
+
+		idPeriodoAluno.getItems().addAll("Matutino", "Vespertino");
+		idPeriodoAluno.setValue("Período ...");
+
+		idAnoEscolarAluno.getItems().addAll("Nenhuma", "Primeira", "Segunda", "Terceira", "Quarta", "Quinta", "Sexta",
+				"Oitava");
+		idAnoEscolarAluno.setValue("Série ...");
+
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		LocalDate localDate = LocalDate.now();
 		idDataCadastro.setText(dtf.format(localDate));
@@ -561,72 +613,135 @@ public class AlunosCadastroNovoController implements Initializable {
 		Constraints.setTextFieldInteger(idNumeroTrabalho);
 		Constraints.setTextFieldInteger(idNumeroNIS);
 
-		GrupoSituacao.selectedToggleProperty()
-				.addListener((observable, oldVal, newVal) -> aluno.setSituacao(radioResult(GrupoSituacao)));
 		GrupoMoradia.selectedToggleProperty()
 				.addListener((observable, oldVal, newVal) -> aluno.setMoradia(radioResult(GrupoMoradia)));
-		GrupoAlergia.selectedToggleProperty()
-				.addListener((observable, oldVal, newVal) -> aluno.setAlergia(radioResult(GrupoAlergia)));
-		GrupoDeficiencia.selectedToggleProperty()
-				.addListener((observable, oldVal, newVal) -> aluno.setDeficiencia(radioResult(GrupoDeficiencia)));
-		GrupoCirurgia.selectedToggleProperty()
-				.addListener((observable, oldVal, newVal) -> aluno.setCirurgia(radioResult(GrupoCirurgia)));
-		GrupoDoenca.selectedToggleProperty()
-				.addListener((observable, oldVal, newVal) -> aluno.setDoenca(radioResult(GrupoDoenca)));
-		GrupoRemedio.selectedToggleProperty()
-				.addListener((observable, oldVal, newVal) -> aluno.setRemedio(radioResult(GrupoRemedio)));
+
+		GrupoAlergia.selectedToggleProperty().addListener((observable, oldVal, newVal) -> {
+			aluno.setAlergia(radioResult(GrupoAlergia));
+			if (radioResult(GrupoAlergia).equals("SIM")) {
+				idQualAlergia.setVisible(true);
+				idAlergiaQual.setVisible(true);
+			} else {
+				idQualAlergia.setVisible(false);
+				idAlergiaQual.setVisible(false);
+				aluno.setAlergiaQual(null);
+				idAlergiaQual.setText(null);
+			}
+		});
+
+		GrupoDeficiencia.selectedToggleProperty().addListener((observable, oldVal, newVal) -> {
+			aluno.setDeficiencia(radioResult(GrupoDeficiencia));
+			if (radioResult(GrupoDeficiencia).equals("SIM")) {
+				idQualDeficiencia.setVisible(true);
+				idDeficienciaQual.setVisible(true);
+			} else {
+				idQualDeficiencia.setVisible(false);
+				idDeficienciaQual.setVisible(false);
+				aluno.setDeficienciaQual(null);
+				idDeficienciaQual.setText(null);
+			}
+		});
+
+		GrupoCirurgia.selectedToggleProperty().addListener((observable, oldVal, newVal) -> {
+			aluno.setCirurgia(radioResult(GrupoCirurgia));
+			if (radioResult(GrupoCirurgia).equals("SIM")) {
+				idQualCirurgia.setVisible(true);
+				idCirurgiaQual.setVisible(true);
+			} else {
+				idQualCirurgia.setVisible(false);
+				idCirurgiaQual.setVisible(false);
+				aluno.setCirurgiaQual(null);
+				idCirurgiaQual.setText(null);
+			}
+		});
+
+		GrupoDoenca.selectedToggleProperty().addListener((observable, oldVal, newVal) -> {
+			aluno.setDoenca(radioResult(GrupoDoenca));
+			if (radioResult(GrupoDoenca).equals("SIM")) {
+				idQualDoenca.setVisible(true);
+				idDoencaQual.setVisible(true);
+			} else {
+				idQualDoenca.setVisible(false);
+				idDoencaQual.setVisible(false);
+				aluno.setDoencaQual(null);
+				idDoencaQual.setText(null);
+
+			}
+		});
+
+		GrupoRemedio.selectedToggleProperty().addListener((observable, oldVal, newVal) -> {
+			aluno.setRemedio(radioResult(GrupoRemedio));
+			if (radioResult(GrupoRemedio).equals("SIM")) {
+				idQualRemedio.setVisible(true);
+				IdRemedioControladoQual.setVisible(true);
+			} else {
+				idQualRemedio.setVisible(false);
+				IdRemedioControladoQual.setVisible(false);
+				aluno.setRemedioQual(null);
+				IdRemedioControladoQual.setText(null);
+			}
+		});
+
 		GrupoBolsaFamilia.selectedToggleProperty()
 				.addListener((observable, oldVal, newVal) -> aluno.setBolsaFamilia(radioResult(GrupoBolsaFamilia)));
 		GrupoBeneficio.selectedToggleProperty()
 				.addListener((observable, oldVal, newVal) -> aluno.setBeneficio(radioResult(GrupoBeneficio)));
 		GrupoCadUnico.selectedToggleProperty()
 				.addListener((observable, oldVal, newVal) -> aluno.setCadastroUnico(radioResult(GrupoCadUnico)));
-		GrupoEncaminha.selectedToggleProperty()
-				.addListener((observable, oldVal, newVal) -> aluno.setEncaminha(radioResult(GrupoEncaminha)));
-		
-		
-		// controlando o tamanho dos campos 
-		
-		Constraints.setTextFieldMaxLength(idNomeAluno,60);
-		Constraints.setTextFieldMaxLength(idDataCadastro,10);
-		Constraints.setTextFieldMaxLength(idRgAluno,15);
-		Constraints.setTextFieldMaxLength(idCpfAluno,15);
-		Constraints.setTextFieldMaxLength(idRuaAluno,10);
-		Constraints.setTextFieldMaxLength(IdNumeroRuaAluno,4);
-		Constraints.setTextFieldMaxLength(idBairroAluno,60);
-		Constraints.setTextFieldMaxLength(idCepAluno,20);
-		Constraints.setTextFieldMaxLength(idCelularAluno,15);
-		Constraints.setTextFieldMaxLength(idTelFixoAluno,20);
-		Constraints.setTextFieldMaxLength(idEmailAluno,60);
-		Constraints.setTextFieldMaxLength(idEscolaAluno,60);
-		Constraints.setTextFieldMaxLength(idPeriodoAluno,10);
-		Constraints.setTextFieldMaxLength(idAnoEscolarAluno,10);
-		Constraints.setTextFieldMaxLength(IdNomeMae,60);
-		Constraints.setTextFieldMaxLength(idRgMae,15);
-		Constraints.setTextFieldMaxLength(idCpfMae,15);
-		Constraints.setTextFieldMaxLength(idCelularMae,15);
-		Constraints.setTextFieldMaxLength(IdNomePai,60);
-		Constraints.setTextFieldMaxLength(idRgPai,15);
-		Constraints.setTextFieldMaxLength(idCpfPai,15);
-		Constraints.setTextFieldMaxLength(idCelularPai,15);
-		Constraints.setTextFieldMaxLength(idNomeResponsavel,60);
-		Constraints.setTextFieldMaxLength(idRgResponsavel,20);
-		Constraints.setTextFieldMaxLength(idCpfResponsavel,15);
-		Constraints.setTextFieldMaxLength(idCelularResponsavel,15);
-		Constraints.setTextFieldMaxLength(IdEnderecoTrabalho,60);
-		Constraints.setTextFieldMaxLength(idNumeroTrabalho,4);
-		Constraints.setTextFieldMaxLength(idCepTrabalho,20);
-		Constraints.setTextFieldMaxLength(idNumeroPessoasMoradia,2);
-		Constraints.setTextFieldMaxLength(idAlergiaQual,60);
-		Constraints.setTextFieldMaxLength(idDeficienciaQual,60);
-		Constraints.setTextFieldMaxLength(idCirurgiaQual,60);
-		Constraints.setTextFieldMaxLength(idDoencaQual,60);
-		Constraints.setTextFieldMaxLength(IdRemedioControladoQual,60);
-		Constraints.setTextFieldMaxLength(idNumeroNIS,11);
-		Constraints.setTextFieldMaxLength(idEncaminhaOutra,60);
 
+		GrupoEncaminha.selectedToggleProperty().addListener((observable, oldVal, newVal) -> {
+			aluno.setEncaminha(radioResult(GrupoEncaminha));
+			if (radioResult(GrupoEncaminha).equals("Outra")) {
+				idEncaminhaOutraLabel.setVisible(true);
+				idEncaminhaOutraTxt.setVisible(true);
+			} else {
+				idEncaminhaOutraLabel.setVisible(false);
+				idEncaminhaOutraTxt.setVisible(false);
+				idEncaminhaOutraTxt.setText(null);
+				aluno.setEncaminhaOutra(null);
+			}
+		}
 
-		
+		);
+
+		// controlando o tamanho dos campos
+
+		Constraints.setTextFieldMaxLength(idNomeAluno, 60);
+		Constraints.setTextFieldMaxLength(idDataCadastro, 10);
+		Constraints.setTextFieldMaxLength(idRgAluno, 15);
+		Constraints.setTextFieldMaxLength(idCpfAluno, 15);
+		Constraints.setTextFieldMaxLength(idRuaAluno, 10);
+		Constraints.setTextFieldMaxLength(IdNumeroRuaAluno, 4);
+		Constraints.setTextFieldMaxLength(idBairroAluno, 60);
+		Constraints.setTextFieldMaxLength(idCepAluno, 20);
+		Constraints.setTextFieldMaxLength(idCelularAluno, 15);
+		Constraints.setTextFieldMaxLength(idTelFixoAluno, 20);
+		Constraints.setTextFieldMaxLength(idEmailAluno, 60);
+		Constraints.setTextFieldMaxLength(idEscolaAluno, 60);
+		Constraints.setTextFieldMaxLength(IdNomeMae, 60);
+		Constraints.setTextFieldMaxLength(idRgMae, 15);
+		Constraints.setTextFieldMaxLength(idCpfMae, 15);
+		Constraints.setTextFieldMaxLength(idCelularMae, 15);
+		Constraints.setTextFieldMaxLength(IdNomePai, 60);
+		Constraints.setTextFieldMaxLength(idRgPai, 15);
+		Constraints.setTextFieldMaxLength(idCpfPai, 15);
+		Constraints.setTextFieldMaxLength(idCelularPai, 15);
+		Constraints.setTextFieldMaxLength(idNomeResponsavel, 60);
+		Constraints.setTextFieldMaxLength(idRgResponsavel, 20);
+		Constraints.setTextFieldMaxLength(idCpfResponsavel, 15);
+		Constraints.setTextFieldMaxLength(idCelularResponsavel, 15);
+		Constraints.setTextFieldMaxLength(IdEnderecoTrabalho, 60);
+		Constraints.setTextFieldMaxLength(idNumeroTrabalho, 4);
+		Constraints.setTextFieldMaxLength(idCepTrabalho, 20);
+		Constraints.setTextFieldMaxLength(idNumeroPessoasMoradia, 2);
+		Constraints.setTextFieldMaxLength(idAlergiaQual, 60);
+		Constraints.setTextFieldMaxLength(idDeficienciaQual, 60);
+		Constraints.setTextFieldMaxLength(idCirurgiaQual, 60);
+		Constraints.setTextFieldMaxLength(idDoencaQual, 60);
+		Constraints.setTextFieldMaxLength(IdRemedioControladoQual, 60);
+		Constraints.setTextFieldMaxLength(idNumeroNIS, 11);
+		Constraints.setTextFieldMaxLength(idEncaminhaOutraTxt, 60);
+
 	}
 
 }
