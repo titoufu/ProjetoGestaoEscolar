@@ -26,6 +26,8 @@ public interface AlunoDao {
 	void update(Aluno obj);
 	void deleteById(Integer id);
 	Aluno findById(Integer id);
+	Aluno findByCpf(String cpf);
 	List<Aluno> findAll();
 	List<Aluno> findByAluno(Aluno aluno);
+	void deleteByCpf(String cpf);
 }

@@ -13,5 +13,8 @@ public class AlunoService {
 	public List<Aluno> findAll() {
 		return dao.findAll();
 	}
+	public void remove(Aluno obj) {
+		dao.deleteById(obj.getId());
+	}
 
 }

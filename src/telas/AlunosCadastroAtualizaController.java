@@ -14,6 +14,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import model.dao.AlunoDao;
@@ -23,8 +24,9 @@ import utilAlerts.Alerts;
 import utilAlerts.CPF;
 import utilAlerts.Constraints;
 
-public class AlunosCadastroNovoController implements Initializable {
+public class AlunosCadastroAtualizaController implements Initializable {
 	public Aluno aluno = new Aluno();
+
 	@FXML
 	private ToggleGroup GrupoAlergia;
 
@@ -144,7 +146,8 @@ public class AlunosCadastroNovoController implements Initializable {
 
 	@FXML
 	private TextField idCpfAluno;
-
+	@FXML
+	private TextField idCpfAtualiza;
 	@FXML
 	private TextField idCpfMae;
 
@@ -238,7 +241,7 @@ public class AlunosCadastroNovoController implements Initializable {
 	private TextField idNumeroNIS;
 
 	@FXML
-	private TextField idNumeroPessoasMoradia;
+	private TextField idNumeroPessoasNaMoradia;
 
 	@FXML
 	private TextField idNumeroTrabalho;
@@ -270,7 +273,13 @@ public class AlunosCadastroNovoController implements Initializable {
 	private TextField idRgResponsavel;
 
 	@FXML
-	private TextField idRuaAluno;
+	private TextField idNomeRuaAluno;
+
+	@FXML
+	private TextField idSituacao;
+
+	@FXML
+	private TabPane idTabPane;
 
 	@FXML
 	private ComboBox<String> idSexoAluno;
@@ -279,8 +288,147 @@ public class AlunosCadastroNovoController implements Initializable {
 	private TextField idTelFixoAluno;
 
 	@FXML
+	void onButtonBuscarAluno(ActionEvent event) {
+		String msg = lecampo(idCpfAtualiza, "CPF do Aluno");
+		if (msg == null) {
+			return;
+		} else {
+			idCpfAtualiza.setText(CPF.formartCpf(msg));
+			conectar_Atualizar(idCpfAtualiza.getText());
+		}
+	}
+
+	@FXML
 	void onButtonCancelarAction(ActionEvent event) {
 
+	}
+
+	private void conectar_Atualizar(String cpf) {
+		AlunoDao alunodao = DaoFactory.createAlunoDao();
+		Aluno aluno = alunodao.findByCpf(cpf);
+		if (aluno != null) {
+			idTabPane.getSelectionModel().select(1); /// mudando para o outro formulario ( outro ABA);
+			idId.setText(aluno.getId().toString());
+			idId.setEditable(false);
+			idNomeAluno.setText(aluno.getNomeAluno());
+			idDataCadastro.setText(aluno.getDataCadastro());
+			idSituacao.setText(aluno.getSituacao());
+			idSituacao.setEditable(false); // impedindo alteração aqui da situação do aluno.
+			idRgAluno.setText(aluno.getRgAluno());
+			idCpfAluno.setText(aluno.getCpfAluno());
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			String date = aluno.getDataNascimentoAluno();
+			idDataNascimentoAluno.setValue(LocalDate.parse(date, formatter));
+			idSexoAluno.setValue(aluno.getSexo());
+			idNomeRuaAluno.setText(aluno.getNomeRuaAluno());
+			IdNumeroRuaAluno.setText(aluno.getNumeroRuaAluno().toString());
+			idBairroAluno.setText(aluno.getBairroAluno());
+			idCepAluno.setText(aluno.getCepAluno());
+			idCelularAluno.setText(aluno.getCelularAluno());
+			idTelFixoAluno.setText(aluno.getTelFixoAluno());
+			idEmailAluno.setText(aluno.getEmailAluno());
+			idEscolaAluno.setText(aluno.getEscolaAluno());
+			idPeriodoAluno.setValue(aluno.getPeriodoAluno());
+			idAnoEscolarAluno.setValue(aluno.getAnoEscolarAluno());
+			IdNomeMae.setText(aluno.getNomeMae());
+			idRgMae.setText(aluno.getRgMae());
+			idCpfMae.setText(aluno.getCpfMae());
+			idCelularMae.setText(aluno.getCelularMae());
+			IdNomePai.setText(aluno.getNomePai());
+			idRgPai.setText(aluno.getRgPai());
+			idCpfPai.setText(aluno.getCpfPai());
+			idCelularPai.setText(aluno.getCelularPai());
+			idNomeResponsavel.setText(aluno.getNomeResponsavel());
+			idRgResponsavel.setText(aluno.getRgResponsavel());
+			idCpfResponsavel.setText(aluno.getCpfResponsavel());
+			idCelularResponsavel.setText(aluno.getCelularResponsavel());
+			IdEnderecoTrabalho.setText(aluno.getEnderecoTrabalho());
+			idNumeroTrabalho.setText(aluno.getNumeroTrabalho().toString());
+			idCepTrabalho.setText(aluno.getCepTrabalho());
+
+			switch (aluno.getMoradia()) {
+			case "Própria": {
+				idMoradiaPropria.setSelected(true);
+				break;
+			}
+			case "Alugada": {
+				idMoradiaAlugada.setSelected(true);
+				break;
+			}
+			case "Financiada": {
+				idMoradiaFinanciada.setSelected(true);
+				break;
+			}
+			default:
+				idMoradiaCedida.setSelected(true);
+			}
+
+			GrupoMoradia.setUserData(aluno.getMoradia());
+			idNumeroPessoasNaMoradia.setText(aluno.getNumeroPessoasNaMoradia().toString());
+
+			if (aluno.getAlergia().equals("SIM"))
+				idAlergiaSim.setSelected(true);
+			if (aluno.getDeficiencia().equals("SIM"))
+				idDeficienciaSim.setSelected(true);
+			if (aluno.getCirurgia().equals("SIM"))
+				idCirurgiaSim.setSelected(true);
+			if (aluno.getDoenca().equals("SIM"))
+				idDoencaSim.setSelected(true);
+			if (aluno.getRemedio().equals("SIM"))
+				IdRemedioControladoSim.setSelected(true);
+
+			idAlergiaQual.setText(aluno.getAlergiaQual());
+			idDeficienciaQual.setText(aluno.getDeficienciaQual());
+			idCirurgiaQual.setText(aluno.getCirurgiaQual());
+			idDoencaQual.setText(aluno.getDoencaQual());
+			IdRemedioControladoQual.setText(aluno.getRemedioQual());
+
+			if (aluno.getBolsaFamilia().equals("SIM"))
+				idBolsaFamiliaSim.setSelected(true);
+			if (aluno.getBeneficio().equals("SIM"))
+				idBeneficioSim.setSelected(true);
+			if (aluno.getCadastroUnico().equals("SIM"))
+				idCadastroUnicoSim.setSelected(true);
+
+			idNumeroNIS.setText(aluno.getNumeroNIS().toString());
+
+			switch (aluno.getEncaminha()) {
+			case "Vara da Infância": {
+				idEncaminhaVaraInfancia.setSelected(true);
+				break;
+			}
+			case "Conselho Tutelar": {
+				idEncaminhaConselhoTutelar.setSelected(true);
+				break;
+			}
+			case "Cemaia": {
+				idEncaminhaCemaia.setSelected(true);
+				break;
+			}
+			case "Bem social": {
+				idEncaminhaBemSocial.setSelected(true);
+				break;
+			}
+			case "Vontade própria": {
+				idEncaminhaVontadePropria.setSelected(true);
+				break;
+			}
+			case "Caps": {
+				idEncaminhaCaps.setSelected(true);
+				break;
+			}
+			default:
+				idEncaminhaOutra.setSelected(true);
+				break;
+			}
+			idEncaminhaOutraTxt.setText(aluno.getEncaminhaOutra());
+
+		} else
+
+		{
+			// String title, String header, String content, AlertType type
+			Alerts.showAlert("Alerta de Erro", "CPF INEXISTENTE", cpf, AlertType.ERROR);
+		}
 	}
 
 	@FXML
@@ -292,6 +440,20 @@ public class AlunosCadastroNovoController implements Initializable {
 			return;
 		} else {
 			aluno.setNomeAluno(msg);
+		}
+
+		msg = lecampo(idId, "Id do Aluno");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setId(Integer.valueOf(msg));
+		}
+
+		msg = lecampo(idSituacao, "Data do Cadastro");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setSituacao(msg);
 		}
 
 		msg = lecampo(idDataCadastro, "Data do Cadastro");
@@ -320,7 +482,7 @@ public class AlunosCadastroNovoController implements Initializable {
 
 		aluno.setSexo(idSexoAluno.getValue());
 
-		aluno.setNomeRuaAluno(lecampo(idRuaAluno, "Rua do Aluno"));
+		aluno.setNomeRuaAluno(lecampo(idNomeRuaAluno, "Rua do Aluno"));
 
 		msg = lecampo(IdNumeroRuaAluno, "Numero da Rua do Aluno");
 		if (msg == null) {
@@ -410,7 +572,7 @@ public class AlunosCadastroNovoController implements Initializable {
 			return;
 		} else {
 			idCpfPai.setText(CPF.formartCpf(msg));
-			aluno.setCpfMae(idCpfPai.getText());
+			aluno.setCpfPai(idCpfPai.getText());
 		}
 		msg = lecampo(idCelularPai, "Celular do Pai");
 		if (msg == null) {
@@ -447,19 +609,27 @@ public class AlunosCadastroNovoController implements Initializable {
 		if (msg == null) {
 			return;
 		} else {
+			aluno.setEnderecoTrabalho(IdEnderecoTrabalho.getText());
+		}
+
+		msg = lecampo(idNumeroTrabalho, "Número da Residência do Responsável");
+		if (msg == null) {
+			return;
+		} else {
 			aluno.setNumeroTrabalho(Integer.valueOf(idNumeroTrabalho.getText()));
 		}
+
 		msg = lecampo(idCepTrabalho, "CEP do Responsável de Trabalho");
 		if (msg == null) {
 			return;
 		} else {
 			aluno.setCepTrabalho(msg);
 		}
-		msg = lecampo(idNumeroPessoasMoradia, "Número de Pessoas na Moradia");
+		msg = lecampo(idNumeroPessoasNaMoradia, "Número de Pessoas na Moradia");
 		if (msg == null) {
 			return;
 		} else {
-			aluno.setNumeroPessoasNaMoradia(Integer.valueOf(idNumeroPessoasMoradia.getText()));
+			aluno.setNumeroPessoasNaMoradia(Integer.valueOf(idNumeroPessoasNaMoradia.getText()));
 
 		}
 		if (radioResult(GrupoAlergia).equals("SIM")) {
@@ -471,14 +641,13 @@ public class AlunosCadastroNovoController implements Initializable {
 			}
 		}
 		if (radioResult(GrupoDeficiencia).equals("SIM")) {
-			msg = lecampo(idDeficienciaQual, "Tipo de Dediciência");
+			msg = lecampo(idDeficienciaQual, "Tipo de Deficiência");
 			if (msg == null) {
 				return;
 			} else {
 				aluno.setDeficienciaQual(msg);
 			}
 		}
-		;
 		if (radioResult(GrupoCirurgia).equals("SIM")) {
 			msg = lecampo(idDeficienciaQual, "Tipo de Cirurgia");
 			if (msg == null) {
@@ -487,7 +656,6 @@ public class AlunosCadastroNovoController implements Initializable {
 				aluno.setCirurgiaQual(msg);
 			}
 		}
-		;
 		if (radioResult(GrupoDoenca).equals("SIM")) {
 			msg = lecampo(idDoencaQual, "Tipo de Doença");
 			if (msg == null) {
@@ -496,8 +664,6 @@ public class AlunosCadastroNovoController implements Initializable {
 				aluno.setDoencaQual(msg);
 			}
 		}
-		;
-
 		if (radioResult(GrupoRemedio).equals("SIM")) {
 			msg = lecampo(IdRemedioControladoQual, "Tipo de Remédio");
 			if (msg == null) {
@@ -523,18 +689,17 @@ public class AlunosCadastroNovoController implements Initializable {
 				aluno.setEncaminhaOutra(msg);
 			}
 		}
-//		System.out.println(aluno.toString());
 		conectar_salvar(aluno);
 	}
 
 	public void conectar_salvar(Aluno aluno) {
 
 		AlunoDao alunodao = DaoFactory.createAlunoDao();
-		alunodao.insert(aluno);
+		alunodao.update(aluno);
 	}
 
 	public String lecampo(TextField id, String msg) {
-		if (id.getText().isBlank() || id.getText() == null || id.getText().trim().equals("")) {
+		if (id.getText() == null || id.getText().trim().equals("")) {
 			Alerts.showAlert(null, "CAMPO VAZIO", "Entre com o valor do " + msg, AlertType.ERROR);
 			return null;
 		} else {
@@ -563,6 +728,7 @@ public class AlunosCadastroNovoController implements Initializable {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		LocalDate localDate = LocalDate.now();
 		idDataCadastro.setText(dtf.format(localDate));
+
 		idDataNascimentoAluno.setValue(localDate);
 		aluno.setSituacao("Em espera");
 		aluno.setMoradia("Própria");
@@ -577,7 +743,7 @@ public class AlunosCadastroNovoController implements Initializable {
 		aluno.setEncaminha("Vontade própria");
 
 		Constraints.setTextFieldInteger(IdNumeroRuaAluno);
-		Constraints.setTextFieldInteger(idNumeroPessoasMoradia);
+		Constraints.setTextFieldInteger(idNumeroPessoasNaMoradia);
 		Constraints.setTextFieldInteger(idNumeroTrabalho);
 		Constraints.setTextFieldInteger(idNumeroNIS);
 
@@ -678,7 +844,6 @@ public class AlunosCadastroNovoController implements Initializable {
 		Constraints.setTextFieldMaxLength(idDataCadastro, 10);
 		Constraints.setTextFieldMaxLength(idRgAluno, 15);
 		Constraints.setTextFieldMaxLength(idCpfAluno, 15);
-		Constraints.setTextFieldMaxLength(idRuaAluno, 10);
 		Constraints.setTextFieldMaxLength(IdNumeroRuaAluno, 4);
 		Constraints.setTextFieldMaxLength(idBairroAluno, 60);
 		Constraints.setTextFieldMaxLength(idCepAluno, 20);
@@ -700,7 +865,6 @@ public class AlunosCadastroNovoController implements Initializable {
 		Constraints.setTextFieldMaxLength(idCelularResponsavel, 15);
 		Constraints.setTextFieldMaxLength(IdEnderecoTrabalho, 60);
 		Constraints.setTextFieldMaxLength(idCepTrabalho, 20);
-		Constraints.setTextFieldMaxLength(idNumeroPessoasMoradia, 2);
 		Constraints.setTextFieldMaxLength(idAlergiaQual, 60);
 		Constraints.setTextFieldMaxLength(idDeficienciaQual, 60);
 		Constraints.setTextFieldMaxLength(idCirurgiaQual, 60);

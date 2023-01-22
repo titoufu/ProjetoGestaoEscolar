@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportTeste" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ca3f7e10-7470-4da4-a294-75d25e8a7170">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="AdapterJasper"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM aluno]]>
+	</queryString>
+	<field name="NomeAluno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NomeAluno"/>
+		<property name="com.jaspersoft.studio.field.label" value="NomeAluno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="aluno"/>
+	</field>
+	<field name="DataCadastro" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DataCadastro"/>
+		<property name="com.jaspersoft.studio.field.label" value="DataCadastro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="aluno"/>
+	</field>
+	<field name="Situacao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Situacao"/>
+		<property name="com.jaspersoft.studio.field.label" value="Situacao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="aluno"/>
+	</field>
+	<field name="RgAluno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="RgAluno"/>
+		<property name="com.jaspersoft.studio.field.label" value="RgAluno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="aluno"/>
+	</field>
+	<field name="CpfAluno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CpfAluno"/>
+		<property name="com.jaspersoft.studio.field.label" value="CpfAluno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="aluno"/>
+	</field>
+	<field name="DataNascimentoAluno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DataNascimentoAluno"/>
+		<property name="com.jaspersoft.studio.field.label" value="DataNascimentoAluno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="aluno"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

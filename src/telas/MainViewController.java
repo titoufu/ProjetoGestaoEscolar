@@ -15,7 +15,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import utilAlerts.Alerts;
-import utilAlerts.CPF;
 
 public class MainViewController implements Initializable {
 	@FXML
@@ -58,15 +57,13 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void onMenuItemAlunoAtualiza() {
-		System.out.println("Aluno Atualiza");
-		loadView("/telas/AlunosCadastroAtualiza.fxml");
-		System.out.println("Aluno Atualiza Abriu");
-	}
+				loadView("/telas/AlunosCadastroAtualiza.fxml");
+			}
 
 	@FXML
 	public void onMenuItemAlunoRemove() {
 		System.out.println("Aluno Remove");
-		loadView("/telas/AlunosCadastroExclui.fxml");
+		loadView("/telas/AlunosCadastroRemove.fxml");
 	}
 
 	public void onMenuItemProfessorNovo() {
