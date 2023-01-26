@@ -24,24 +24,26 @@ public class AlunoDaoJDBC implements AlunoDao {
 
 	@Override
 	public void insert(Aluno obj) {
+		System.out.print("  XXXXXXXX  "+obj.toString());
 		PreparedStatement st = null;
 		try {
-			st = conn.prepareStatement("INSERT INTO aluno " + "(NomeAluno, DataCadastro, Situacao, RgAluno, CpfAluno, "
-					+ "DataNascimentoAluno, Sexo, NomeRuaAluno, NumeroRuaAluno, "
-					+ "BairroAluno, CepAluno, CelularAluno, TelFixoAluno, "
-					+ "EmailAluno, EscolaAluno, PeriodoAluno, AnoEscolarAluno, "
-					+ "NomeMae, RgMae, CpfMae, CelularMae, NomePai, RgPai, "
-					+ "CpfPai, CelularPai, NomeResponsavel, RgResponsavel, CpfResponsavel, "
-					+ "CelularResponsavel, EnderecoTrabalho, NumeroTrabalho, CepTrabalho, "
-					+ "Moradia, NumeroPessoasNaMoradia, Alergia, AlergiaQual, Deficiencia, "
-					+ "DeficienciaQual, Cirurgia, CirurgiaQual, Doenca, DoencaQual, "
-					+ "Remedio, RemedioQual, BolsaFamilia, Beneficio, CadastroUnico, "
-					+ "NumeroNIS, Encaminha, EncaminhaOutra)"
+			st = conn.prepareStatement(
+					"INSERT INTO aluno " + "(NomeAluno, DataCadastro, Situacao, RgAluno, CpfAluno, "
+							+ "DataNascimentoAluno, Sexo, NomeRuaAluno, NumeroRuaAluno, "
+							+ "BairroAluno, CepAluno, CelularAluno, TelFixoAluno, "
+							+ "EmailAluno, EscolaAluno, PeriodoAluno, AnoEscolarAluno, "
+							+ "NomeMae, RgMae, CpfMae, CelularMae, NomePai, RgPai, "
+							+ "CpfPai, CelularPai, NomeResponsavel, RgResponsavel, CpfResponsavel, "
+							+ "CelularResponsavel, EnderecoTrabalho, NumeroTrabalho, CepTrabalho, "
+							+ "Moradia, NumeroPessoasNaMoradia, Alergia, AlergiaQual, Deficiencia, "
+							+ "DeficienciaQual, Cirurgia, CirurgiaQual, Doenca, DoencaQual, "
+							+ "Remedio, RemedioQual, BolsaFamilia, Beneficio, CadastroUnico, "
+							+ "NumeroNIS, Encaminha, EncaminhaOutra, DataMatricula, DataExclusao, "
+							+ "TurmaRegular, TurmaEspecial, RendaFamiliar )" + " VALUES "
 
-					+ " VALUES "
-
-					+ "(?,?,?,?,?,?,?,?,?,?," + "?,?,?,?,?,?,?,?,?,?," + "?,?,?,?,?,?,?,?,?,?," + "?,?,?,?,?,?,?,?,?,?,"
-					+ "?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+							+ "(?,?,?,?,?,?,?,?,?,?," + "?,?,?,?,?,?,?,?,?,?," + "?,?,?,?,?,?,?,?,?,?,"
+							+ "?,?,?,?,?,?,?,?,?,?," + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+					Statement.RETURN_GENERATED_KEYS);
 
 			st.setString(1, obj.getNomeAluno());
 			st.setString(2, obj.getDataCadastro());
@@ -93,7 +95,11 @@ public class AlunoDaoJDBC implements AlunoDao {
 			st.setInt(48, obj.getNumeroNIS());
 			st.setString(49, obj.getEncaminha());
 			st.setString(50, obj.getEncaminhaOutra());
-
+			st.setString(51, obj.getDataMatricula());
+			st.setString(52, obj.getDataExclusao());
+			st.setString(53, obj.getTurmaRegular());
+			st.setString(54, obj.getTurmaEspecial());
+			st.setString(55, obj.getRendaFamiliar());
 			int rowsAffected = st.executeUpdate();
 
 			if (rowsAffected > 0) {
@@ -130,8 +136,10 @@ public class AlunoDaoJDBC implements AlunoDao {
 							+ "NumeroPessoasNaMoradia=?, Alergia=?, AlergiaQual=?, Deficiencia=?, "
 							+ "DeficienciaQual=?, Cirurgia=?, CirurgiaQual=?, Doenca=?, DoencaQual=?, "
 							+ "Remedio=?, RemedioQual=?, BolsaFamilia=?, Beneficio=?, CadastroUnico=?, "
-							+ "NumeroNIS=?, Encaminha=?, EncaminhaOutra=? " + "WHERE id=? ");
-
+							+ "NumeroNIS=?, Encaminha=?, EncaminhaOutra=?, " 
+							+ "DataMatricula=?, DataExclusao=?, TurmaRegular=? ,TurmaEspecial=? , RendaFamiliar=? "
+							+ "WHERE id=? ");
+					
 			st.setString(1, obj.getNomeAluno());
 			st.setString(2, obj.getDataCadastro());
 			st.setString(3, obj.getSituacao());
@@ -182,7 +190,12 @@ public class AlunoDaoJDBC implements AlunoDao {
 			st.setInt(48, obj.getNumeroNIS());
 			st.setString(49, obj.getEncaminha());
 			st.setString(50, obj.getEncaminhaOutra());
-			st.setInt(51, obj.getId());
+			st.setString(51, obj.getDataMatricula());
+			st.setString(52, obj.getDataExclusao());
+			st.setString(53, obj.getTurmaRegular());
+			st.setString(54, obj.getTurmaEspecial());
+			st.setString(55, obj.getRendaFamiliar());
+			st.setInt(56, obj.getId());
 
 			st.executeUpdate();
 		} catch (SQLException e) {
@@ -269,6 +282,12 @@ public class AlunoDaoJDBC implements AlunoDao {
 				obj.setNumeroNIS(rs.getInt("NumeroNIS"));
 				obj.setEncaminha(rs.getString("Encaminha"));
 				obj.setEncaminhaOutra(rs.getString("EncaminhaOutra"));
+				obj.setDataMatricula(rs.getString("DataMatricula"));
+				obj.setDataExclusao(rs.getString("DataExclusao"));
+				obj.setTurmaEspecial(rs.getString("TurmaEspecial"));
+				obj.setTurmaRegular(rs.getString("TurmaRegular"));
+				obj.setRendaFamiliar(rs.getString("RendaFamiliar"));
+				System.out.print(obj.toString());
 				return obj;
 			} else {
 				return null;
@@ -281,7 +300,7 @@ public class AlunoDaoJDBC implements AlunoDao {
 	@Override
 	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

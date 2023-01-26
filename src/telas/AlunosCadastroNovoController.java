@@ -410,7 +410,7 @@ public class AlunosCadastroNovoController implements Initializable {
 			return;
 		} else {
 			idCpfPai.setText(CPF.formartCpf(msg));
-			aluno.setCpfMae(idCpfPai.getText());
+			aluno.setCpfPai(idCpfPai.getText());
 		}
 		msg = lecampo(idCelularPai, "Celular do Pai");
 		if (msg == null) {
@@ -443,12 +443,23 @@ public class AlunosCadastroNovoController implements Initializable {
 		} else {
 			aluno.setCelularResponsavel(msg);
 		}
+		
 		msg = lecampo(IdEnderecoTrabalho, "Endereço de Trabalho do Responsável");
+		if (msg == null) {
+			return;
+		} else {
+			aluno.setEnderecoTrabalho(msg);
+		}
+		
+		msg = lecampo(idNumeroTrabalho, "Endereço de Trabalho do Responsável");
 		if (msg == null) {
 			return;
 		} else {
 			aluno.setNumeroTrabalho(Integer.valueOf(idNumeroTrabalho.getText()));
 		}
+		
+		
+		
 		msg = lecampo(idCepTrabalho, "CEP do Responsável de Trabalho");
 		if (msg == null) {
 			return;
@@ -575,6 +586,11 @@ public class AlunosCadastroNovoController implements Initializable {
 		aluno.setBeneficio("NÃO");
 		aluno.setCadastroUnico("NÃO");
 		aluno.setEncaminha("Vontade própria");
+		aluno.setDataMatricula("");
+		aluno.setDataExclusao("");
+		aluno.setTurmaRegular("Nenhuma");
+		aluno.setTurmaEspecial("Nenhuma");
+		aluno.setRendaFamiliar("um salário");
 
 		Constraints.setTextFieldInteger(IdNumeroRuaAluno);
 		Constraints.setTextFieldInteger(idNumeroPessoasMoradia);
@@ -678,7 +694,7 @@ public class AlunosCadastroNovoController implements Initializable {
 		Constraints.setTextFieldMaxLength(idDataCadastro, 10);
 		Constraints.setTextFieldMaxLength(idRgAluno, 15);
 		Constraints.setTextFieldMaxLength(idCpfAluno, 15);
-		Constraints.setTextFieldMaxLength(idRuaAluno, 10);
+		Constraints.setTextFieldMaxLength(idRuaAluno, 60);
 		Constraints.setTextFieldMaxLength(IdNumeroRuaAluno, 4);
 		Constraints.setTextFieldMaxLength(idBairroAluno, 60);
 		Constraints.setTextFieldMaxLength(idCepAluno, 20);

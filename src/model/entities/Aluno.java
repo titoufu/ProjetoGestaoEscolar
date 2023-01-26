@@ -8,7 +8,6 @@ public class Aluno implements Serializable {
 	private Integer id;
 	private String nomeAluno;
 	private String dataCadastro;
-	private String codigo;
 	private String situacao;
 	private String rgAluno;
 	private String cpfAluno;
@@ -57,7 +56,11 @@ public class Aluno implements Serializable {
 	private Integer numeroNIS;
 	private String encaminha;
 	private String encaminhaOutra;
-
+	private String DataMatricula;
+	private String DataExclusao;
+	private String TurmaRegular;  
+	private String TurmaEspecial;
+	private String RendaFamiliar;
 	public Aluno() {
 
 	}
@@ -76,14 +79,6 @@ public class Aluno implements Serializable {
 
 	public void setDataCadastro(String dataCadastro) {
 		this.dataCadastro = dataCadastro;
-	}
-
-	public String getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
 	}
 
 	public String getSituacao() {
@@ -482,9 +477,49 @@ public class Aluno implements Serializable {
 		return serialVersionUID;
 	}
 
+	public String getDataMatricula() {
+		return DataMatricula;
+	}
+
+	public void setDataMatricula(String dataMatricula) {
+		DataMatricula = dataMatricula;
+	}
+
+	public String getDataExclusao() {
+		return DataExclusao;
+	}
+
+	public void setDataExclusao(String dataExclusao) {
+		DataExclusao = dataExclusao;
+	}
+
+	public String getTurmaRegular() {
+		return TurmaRegular;
+	}
+
+	public void setTurmaRegular(String turmaRegular) {
+		TurmaRegular = turmaRegular;
+	}
+
+	public String getTurmaEspecial() {
+		return TurmaEspecial;
+	}
+
+	public void setTurmaEspecial(String turmaEspecial) {
+		TurmaEspecial = turmaEspecial;
+	}
+
+	public String getRendaFamiliar() {
+		return RendaFamiliar;
+	}
+
+	public void setRendaFamiliar(String rendaFamiliar) {
+		RendaFamiliar = rendaFamiliar;
+	}
+
 	@Override
 	public String toString() {
-		return "Aluno [nomeAluno=" + nomeAluno + ", dataCadastro=" + dataCadastro + ", codigo=" + codigo + ", situacao="
+		return "Aluno [id=" + id + ", nomeAluno=" + nomeAluno + ", dataCadastro=" + dataCadastro + ", situacao="
 				+ situacao + ", rgAluno=" + rgAluno + ", cpfAluno=" + cpfAluno + ", dataNascimentoAluno="
 				+ dataNascimentoAluno + ", sexo=" + sexo + ", nomeRuaAluno=" + nomeRuaAluno + ", numeroRuaAluno="
 				+ numeroRuaAluno + ", bairroAluno=" + bairroAluno + ", cepAluno=" + cepAluno + ", celularAluno="
@@ -500,7 +535,8 @@ public class Aluno implements Serializable {
 				+ deficienciaQual + ", cirurgia=" + cirurgia + ", cirurgiaQual=" + cirurgiaQual + ", doenca=" + doenca
 				+ ", doencaQual=" + doencaQual + ", remedio=" + remedio + ", remedioQual=" + remedioQual
 				+ ", bolsaFamilia=" + bolsaFamilia + ", beneficio=" + beneficio + ", cadastroUnico=" + cadastroUnico
-				+ ", numeroNIS=" + numeroNIS + ", encaminha=" + encaminha + ", encaminhaOutra=" + encaminhaOutra + "]";
+				+ ", numeroNIS=" + numeroNIS + ", encaminha=" + encaminha + ", encaminhaOutra=" + encaminhaOutra
+				+ ", DataMatricula=" + DataMatricula + ", DataExclusao=" + DataExclusao + ", TurmaRegular="
+				+ TurmaRegular + ", TurmaEspecial=" + TurmaEspecial + ", RendaFamiliar=" + RendaFamiliar + "]";
 	}
-
 }

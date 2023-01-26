@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.Main;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,6 +18,9 @@ import javafx.scene.layout.VBox;
 import utilAlerts.Alerts;
 
 public class MainViewController implements Initializable {
+	
+    @FXML
+    private MenuItem menuItemAlunoMatricula;
 	@FXML
 	private MenuItem menuItemAlunoNovo;
 	@FXML
@@ -65,6 +69,11 @@ public class MainViewController implements Initializable {
 		System.out.println("Aluno Remove");
 		loadView("/telas/AlunosCadastroRemove.fxml");
 	}
+    @FXML
+    void onMenuItemAlunoMatricula(ActionEvent event) {
+    	System.out.println("Aluno Matricula");
+		loadView("/telas/AlunosMatricula.fxml");
+    }
 
 	public void onMenuItemProfessorNovo() {
 		System.out.println("Professor Novo");
@@ -98,6 +107,7 @@ public class MainViewController implements Initializable {
 	@FXML
 	public void onMenuItemRelatoriosAlunosMatriculados() {
 		System.out.println("Aluno Matriculado");
+		loadView("/telas/RelAlunosEspera.fxml");
 	}
 
 	@FXML

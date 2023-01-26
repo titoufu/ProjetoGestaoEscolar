@@ -6,6 +6,7 @@ module MariaLobatoGenteJovem {
 	requires java.desktop;
 	requires java.sql;
 	requires mysql.connector.java;
+	requires jasperreports;
 	
 	opens application to javafx.graphics, javafx.fxml;
 	opens telas to javafx.graphics, javafx.fxml;

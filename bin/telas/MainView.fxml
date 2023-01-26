@@ -17,6 +17,7 @@
                     <MenuItem fx:id="menuItemAlunoNovo" mnemonicParsing="false" onAction="#onMenuItemAlunoNovo" text="Novo Cadastro" />
                         <MenuItem fx:id="menuItemAlunoAtualiza" mnemonicParsing="false" onAction="#onMenuItemAlunoAtualiza" text="Atualiza Cadastro" />
                         <MenuItem fx:id="menuItemAlunoRemove" mnemonicParsing="false" onAction="#onMenuItemAlunoRemove" text="Remove Cadastro" />
+                        <MenuItem fx:id="menuItemAlunoMatricula" mnemonicParsing="false" onAction="#onMenuItemAlunoMatricula" text="Matricula" />
                   </items>
                 </Menu>
                   <Menu mnemonicParsing="false" text="Professores">

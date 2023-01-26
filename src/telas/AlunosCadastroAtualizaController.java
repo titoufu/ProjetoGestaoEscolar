@@ -844,6 +844,7 @@ public class AlunosCadastroAtualizaController implements Initializable {
 		Constraints.setTextFieldMaxLength(idDataCadastro, 10);
 		Constraints.setTextFieldMaxLength(idRgAluno, 15);
 		Constraints.setTextFieldMaxLength(idCpfAluno, 15);
+		Constraints.setTextFieldMaxLength(idNomeRuaAluno, 60);
 		Constraints.setTextFieldMaxLength(IdNumeroRuaAluno, 4);
 		Constraints.setTextFieldMaxLength(idBairroAluno, 60);
 		Constraints.setTextFieldMaxLength(idCepAluno, 20);
