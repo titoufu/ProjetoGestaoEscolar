@@ -3,6 +3,7 @@ package telas;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -241,7 +242,7 @@ public class AlunosCadastroAtualizaController implements Initializable {
 	private TextField idNumeroNIS;
 
 	@FXML
-	private TextField idNumeroPessoasNaMoradia;
+	private TextField idNumeroPessoasMoradia;
 
 	@FXML
 	private TextField idNumeroTrabalho;
@@ -273,7 +274,7 @@ public class AlunosCadastroAtualizaController implements Initializable {
 	private TextField idRgResponsavel;
 
 	@FXML
-	private TextField idNomeRuaAluno;
+	private TextField idRuaAluno;
 
 	@FXML
 	private TextField idSituacao;
@@ -286,6 +287,17 @@ public class AlunosCadastroAtualizaController implements Initializable {
 
 	@FXML
 	private TextField idTelFixoAluno;
+
+	@FXML
+	void onCpfFormat(ActionEvent event) {
+		final TextField source = (TextField) event.getSource();
+		String msg = lecampo2(source.getText(), "CPF");
+		if (msg == null) {
+			return;
+		} else {
+			source.setText(CPF.formartCpf(msg));
+		}
+	}
 
 	@FXML
 	void onButtonBuscarAluno(ActionEvent event) {
@@ -301,6 +313,55 @@ public class AlunosCadastroAtualizaController implements Initializable {
 	@FXML
 	void onButtonCancelarAction(ActionEvent event) {
 
+		idMoradiaPropria.setSelected(true);
+
+		IdRemedioControladoNao.setSelected(true);
+		idDoencaNao.setSelected(true);
+		idAlergiaNao.setSelected(true);
+		idDeficienciaNao.setSelected(true);
+		idCirurgiaNao.setSelected(true);
+		idEncaminhaVontadePropria.setSelected(true);
+		idBolsaFamiliaNao.setSelected(true);
+		idBeneficioNao.setSelected(true);
+		idCadastroUnicoNao.setSelected(true);
+
+		idAlergiaQual.clear();
+		idBairroAluno.clear();
+		idCelularAluno.clear();
+		idCelularMae.clear();
+		idCelularPai.clear();
+		idCelularResponsavel.clear();
+		idCepAluno.clear();
+		idCepTrabalho.clear();
+		idCirurgiaQual.clear();
+		idCpfAluno.clear();
+		idCpfMae.clear();
+		idCpfPai.clear();
+		idCpfResponsavel.clear();
+		idDeficienciaQual.clear();
+		idDoencaQual.clear();
+		idEmailAluno.clear();
+		idEncaminhaOutraTxt.clear();
+		IdEnderecoTrabalho.clear();
+		idEscolaAluno.clear();
+		idNomeAluno.clear();
+		IdNomeMae.clear();
+		IdNomePai.clear();
+		idNomeResponsavel.clear();
+		idNumeroNIS.clear();
+		idNumeroPessoasMoradia.clear();
+		IdNumeroRuaAluno.clear();
+		idNumeroTrabalho.clear();
+		IdRemedioControladoQual.clear();
+		IdRemedioControladoQual.clear();
+		idRgAluno.clear();
+		idRgMae.clear();
+		idRgPai.clear();
+		idRgResponsavel.clear();
+		idRuaAluno.clear();
+		idTelFixoAluno.clear();
+
+		aluno = new Aluno();
 	}
 
 	private void conectar_Atualizar(String cpf) {
@@ -320,7 +381,7 @@ public class AlunosCadastroAtualizaController implements Initializable {
 			String date = aluno.getDataNascimentoAluno();
 			idDataNascimentoAluno.setValue(LocalDate.parse(date, formatter));
 			idSexoAluno.setValue(aluno.getSexo());
-			idNomeRuaAluno.setText(aluno.getNomeRuaAluno());
+			idRuaAluno.setText(aluno.getNomeRuaAluno());
 			IdNumeroRuaAluno.setText(aluno.getNumeroRuaAluno().toString());
 			idBairroAluno.setText(aluno.getBairroAluno());
 			idCepAluno.setText(aluno.getCepAluno());
@@ -364,7 +425,7 @@ public class AlunosCadastroAtualizaController implements Initializable {
 			}
 
 			GrupoMoradia.setUserData(aluno.getMoradia());
-			idNumeroPessoasNaMoradia.setText(aluno.getNumeroPessoasNaMoradia().toString());
+			idNumeroPessoasMoradia.setText(aluno.getNumeroPessoasNaMoradia().toString());
 
 			if (aluno.getAlergia().equals("SIM"))
 				idAlergiaSim.setSelected(true);
@@ -482,7 +543,7 @@ public class AlunosCadastroAtualizaController implements Initializable {
 
 		aluno.setSexo(idSexoAluno.getValue());
 
-		aluno.setNomeRuaAluno(lecampo(idNomeRuaAluno, "Rua do Aluno"));
+		aluno.setNomeRuaAluno(lecampo(idRuaAluno, "Rua do Aluno"));
 
 		msg = lecampo(IdNumeroRuaAluno, "Numero da Rua do Aluno");
 		if (msg == null) {
@@ -625,11 +686,11 @@ public class AlunosCadastroAtualizaController implements Initializable {
 		} else {
 			aluno.setCepTrabalho(msg);
 		}
-		msg = lecampo(idNumeroPessoasNaMoradia, "Número de Pessoas na Moradia");
+		msg = lecampo(idNumeroPessoasMoradia, "Número de Pessoas na Moradia");
 		if (msg == null) {
 			return;
 		} else {
-			aluno.setNumeroPessoasNaMoradia(Integer.valueOf(idNumeroPessoasNaMoradia.getText()));
+			aluno.setNumeroPessoasNaMoradia(Integer.valueOf(idNumeroPessoasMoradia.getText()));
 
 		}
 		if (radioResult(GrupoAlergia).equals("SIM")) {
@@ -707,6 +768,15 @@ public class AlunosCadastroAtualizaController implements Initializable {
 		}
 	}
 
+	public String lecampo2(String id, String msg) {
+		if (id == null || id.trim().equals("")) {
+			Alerts.showAlert(null, "CAMPO VAZIO", "Entre com o valor do " + msg, AlertType.ERROR);
+			return null;
+		} else {
+			return id;
+		}
+	}
+
 	public String radioResult(ToggleGroup rB) {
 		RadioButton selectedRadioButton = (RadioButton) rB.getSelectedToggle();
 		String toogleGroupValue = selectedRadioButton.getText();
@@ -714,7 +784,7 @@ public class AlunosCadastroAtualizaController implements Initializable {
 	}
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+				
 		idSexoAluno.getItems().addAll("Masculino", "Feminino", "Não declarado");
 		idSexoAluno.setValue("Masculino");
 
@@ -725,11 +795,15 @@ public class AlunosCadastroAtualizaController implements Initializable {
 				"Oitava");
 		idAnoEscolarAluno.setValue("Série ...");
 
+		
+		Locale.setDefault(Locale.US);
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		LocalDate localDate = LocalDate.now();
+	
 		idDataCadastro.setText(dtf.format(localDate));
 
 		idDataNascimentoAluno.setValue(localDate);
+			
 		aluno.setSituacao("Em espera");
 		aluno.setMoradia("Própria");
 		aluno.setAlergia("NÃo");
@@ -743,7 +817,7 @@ public class AlunosCadastroAtualizaController implements Initializable {
 		aluno.setEncaminha("Vontade própria");
 
 		Constraints.setTextFieldInteger(IdNumeroRuaAluno);
-		Constraints.setTextFieldInteger(idNumeroPessoasNaMoradia);
+		Constraints.setTextFieldInteger(idNumeroPessoasMoradia);
 		Constraints.setTextFieldInteger(idNumeroTrabalho);
 		Constraints.setTextFieldInteger(idNumeroNIS);
 
@@ -844,7 +918,7 @@ public class AlunosCadastroAtualizaController implements Initializable {
 		Constraints.setTextFieldMaxLength(idDataCadastro, 10);
 		Constraints.setTextFieldMaxLength(idRgAluno, 15);
 		Constraints.setTextFieldMaxLength(idCpfAluno, 15);
-		Constraints.setTextFieldMaxLength(idNomeRuaAluno, 60);
+		Constraints.setTextFieldMaxLength(idRuaAluno, 60);
 		Constraints.setTextFieldMaxLength(IdNumeroRuaAluno, 4);
 		Constraints.setTextFieldMaxLength(idBairroAluno, 60);
 		Constraints.setTextFieldMaxLength(idCepAluno, 20);

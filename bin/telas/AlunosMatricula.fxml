@@ -188,7 +188,7 @@
             <Pane prefHeight="30.0" prefWidth="698.0" />
           <Button fx:id="idButtonMatricular" mnemonicParsing="false" onAction="#onMatricular" text="Matricular" />
             <Button fx:id="idButtonDesligar" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#onButtonDesligar" text="Desligar" />
-            <Button fx:id="idButtonCancelar" alignment="CENTER_RIGHT" cancelButton="true" contentDisplay="RIGHT" layoutX="66.0" layoutY="13.0" mnemonicParsing="false" onAction="#OnCancelar" text="Cancelar" textAlignment="JUSTIFY" />
+            <Button fx:id="idButtonCancelar" alignment="CENTER_RIGHT" cancelButton="true" contentDisplay="RIGHT" layoutX="66.0" layoutY="13.0" mnemonicParsing="false" onAction="#OnCancelar" text="Limpar" textAlignment="JUSTIFY" />
         </items>
       </ToolBar>
    </children>

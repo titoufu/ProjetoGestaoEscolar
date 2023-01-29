@@ -109,32 +109,44 @@
 		<band height="24" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="200" height="20" uuid="20777185-6ec9-49c4-9c1d-3ca8eab1a428"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{NomeAluno}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="210" y="0" width="60" height="20" uuid="538ba153-e8e4-40fe-9c2c-52649f35d5a5"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{RgAluno}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="280" y="0" width="60" height="20" uuid="f036d71d-cb4c-4d0f-a430-d1c4f62f79f7"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{CpfAluno}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="350" y="0" width="60" height="20" uuid="ba9d08b1-db28-4fea-9f81-8eefd30cb5b8"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{DataNascimentoAluno}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="420" y="0" width="60" height="20" uuid="65a1bdf7-5984-4fb9-b557-c263381d276a"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{DataCadastro}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="492" y="0" width="68" height="20" uuid="cae1173b-ac2c-4f28-b615-ad2bb231d2fb"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{Situacao}]]></textFieldExpression>
 			</textField>
 		</band>

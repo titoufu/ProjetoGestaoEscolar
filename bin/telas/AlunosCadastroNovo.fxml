@@ -66,7 +66,7 @@
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="idDataCadastro" prefHeight="25.0" prefWidth="96.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <TextField fx:id="idDataCadastro" editable="false" prefHeight="25.0" prefWidth="96.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
@@ -113,7 +113,7 @@
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="idCpfAluno" prefHeight="25.0" prefWidth="134.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <TextField fx:id="idCpfAluno" onAction="#onCpfFormat" prefHeight="25.0" prefWidth="134.0" promptText="xxx.xxx.xxx-xx" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
@@ -321,7 +321,7 @@
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="idCpfMae" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <TextField fx:id="idCpfMae" onAction="#onCpfFormat" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
@@ -373,7 +373,7 @@
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="idCpfPai" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <TextField fx:id="idCpfPai" onAction="#onCpfFormat" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
@@ -423,7 +423,7 @@
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="idCpfResponsavel" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <TextField fx:id="idCpfResponsavel" onAction="#onCpfFormat" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
@@ -978,7 +978,7 @@
       <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="1280.0">
         <items>
           <Button fx:id="idButtonSalvar" mnemonicParsing="false" onAction="#onButtonSalvarAction" text="Salvar" />
-            <Button fx:id="idButtonCancelar" mnemonicParsing="false" onAction="#onButtonCancelarAction" text="Cancelar" />
+            <Button fx:id="idButtonLimpar" mnemonicParsing="false" onAction="#onButtonLimparAction" text="Limpar" />
         </items>
       </ToolBar>
    </children>

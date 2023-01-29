@@ -8,19 +8,13 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import model.dao.AlunoDao;
 import model.dao.DaoFactory;
 import model.entities.Aluno;
@@ -28,9 +22,7 @@ import utilAlerts.Alerts;
 import utilAlerts.CPF;
 
 public class AlunosMatriculaController implements Initializable {
-	private Stage stage;
-	private Scene scene;
-	private Parent root;
+
 
 	Aluno aluno = new Aluno();
 
@@ -84,20 +76,9 @@ public class AlunosMatriculaController implements Initializable {
 
 	@FXML
 	void OnCancelar(ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("/telas/MainView.fxml"));
-//		ScrollPane scrollPane = loader.load();
-//		scrollPane.setFitToHeight(true);
-//		scrollPane.setFitToWidth(true);
-//		mainScene = new Scene(scrollPane);
-//		primaryStage.setScene(mainScene);
-//		primaryStage.setTitle("LEMALOB: Projeto Gente Jovem");
-//		primaryStage.show()
-		
-		
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		idGridNome.setVisible(false);
+		idGridTurma.setVisible(false);
+		idCpfAluno.clear();
 	}
 
 	@FXML
@@ -107,7 +88,6 @@ public class AlunosMatriculaController implements Initializable {
 		LocalDate localDate = LocalDate.now();
 		idDataDeslValue.setText(dtf.format(localDate));
 		aluno.setDataExclusao(idDataDeslValue.getText());
-
 		aluno.setSituacao("Desligado");
 		AlunoDao alunodao = DaoFactory.createAlunoDao();
 		alunodao.update(aluno);

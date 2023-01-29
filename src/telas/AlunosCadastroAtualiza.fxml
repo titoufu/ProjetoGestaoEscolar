@@ -160,7 +160,7 @@
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="idCpfAluno" prefHeight="25.0" prefWidth="134.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <TextField fx:id="idCpfAluno" onAction="#onCpfFormat" prefHeight="25.0" prefWidth="134.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
@@ -219,7 +219,7 @@
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
-                                    <TextField fx:id="idNomeRuaAluno" prefHeight="25.0" prefWidth="393.0" GridPane.rowIndex="1">
+                                    <TextField fx:id="idRuaAluno" prefHeight="25.0" prefWidth="393.0" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
@@ -368,7 +368,7 @@
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="idCpfMae" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <TextField fx:id="idCpfMae" onAction="#onCpfFormat" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
@@ -420,7 +420,7 @@
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="idCpfPai" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <TextField fx:id="idCpfPai" onAction="#onCpfFormat" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
@@ -470,7 +470,7 @@
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="idCpfResponsavel" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <TextField fx:id="idCpfResponsavel" onAction="#onCpfFormat" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
                                        </GridPane.margin>
@@ -613,7 +613,7 @@
                                           <Insets bottom="5.0" top="5.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <TextField fx:id="idNumeroPessoasNaMoradia" prefHeight="25.0" prefWidth="278.0" GridPane.columnIndex="1">
+                                    <TextField fx:id="idNumeroPessoasMoradia" prefHeight="25.0" prefWidth="278.0" GridPane.columnIndex="1">
                                        <GridPane.margin>
                                           <Insets bottom="5.0" top="5.0" />
                                        </GridPane.margin>
@@ -1025,7 +1025,7 @@
       <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="1280.0">
         <items>
           <Button fx:id="idButtonSalvar" mnemonicParsing="false" onAction="#onButtonSalvarAction" text="Atualizar" />
-            <Button fx:id="idButtonCancelar" mnemonicParsing="false" onAction="#onButtonCancelarAction" text="Cancelar" />
+            <Button fx:id="idButtonCancelar" mnemonicParsing="false" onAction="#onButtonCancelarAction" text="Limpar" />
         </items>
       </ToolBar>
    </children>

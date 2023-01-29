@@ -104,7 +104,7 @@ public class AlunosCadastroNovoController implements Initializable {
 	private RadioButton idBolsaFamiliaSim;
 
 	@FXML
-	private Button idButtonCancelar;
+	private Button idButtonLimpar;
 
 	@FXML
 	private Button idButtonSalvar;
@@ -279,8 +279,68 @@ public class AlunosCadastroNovoController implements Initializable {
 	private TextField idTelFixoAluno;
 
 	@FXML
-	void onButtonCancelarAction(ActionEvent event) {
+	void onCpfFormat(ActionEvent event) {
+		final TextField source = (TextField) event.getSource();
+		String msg = lecampo2(source.getText(), "CPF");
+		if (msg == null) {
+			return;
+		} else {
+			source.setText(CPF.formartCpf(msg));
+		}
+	}
 
+	@FXML
+	void onButtonLimparAction(ActionEvent event) {
+
+		idMoradiaPropria.setSelected(true);
+
+		IdRemedioControladoNao.setSelected(true);
+		idDoencaNao.setSelected(true);
+		idAlergiaNao.setSelected(true);
+		idDeficienciaNao.setSelected(true);
+		idCirurgiaNao.setSelected(true);
+		idEncaminhaVontadePropria.setSelected(true);
+		idBolsaFamiliaNao.setSelected(true);
+		idBeneficioNao.setSelected(true);
+		idCadastroUnicoNao.setSelected(true);
+
+		idAlergiaQual.clear();
+		idBairroAluno.clear();
+		idCelularAluno.clear();
+		idCelularMae.clear();
+		idCelularPai.clear();
+		idCelularResponsavel.clear();
+		idCepAluno.clear();
+		idCepTrabalho.clear();
+		idCirurgiaQual.clear();
+		idCpfAluno.clear();
+		idCpfMae.clear();
+		idCpfPai.clear();
+		idCpfResponsavel.clear();
+		idDeficienciaQual.clear();
+		idDoencaQual.clear();
+		idEmailAluno.clear();
+		idEncaminhaOutraTxt.clear();
+		IdEnderecoTrabalho.clear();
+		idEscolaAluno.clear();
+		idNomeAluno.clear();
+		IdNomeMae.clear();
+		IdNomePai.clear();
+		idNomeResponsavel.clear();
+		idNumeroNIS.clear();
+		idNumeroPessoasMoradia.clear();
+		IdNumeroRuaAluno.clear();
+		idNumeroTrabalho.clear();
+		IdRemedioControladoQual.clear();
+		IdRemedioControladoQual.clear();
+		idRgAluno.clear();
+		idRgMae.clear();
+		idRgPai.clear();
+		idRgResponsavel.clear();
+		idRuaAluno.clear();
+		idTelFixoAluno.clear();
+
+		aluno = new Aluno();
 	}
 
 	@FXML
@@ -443,23 +503,21 @@ public class AlunosCadastroNovoController implements Initializable {
 		} else {
 			aluno.setCelularResponsavel(msg);
 		}
-		
+
 		msg = lecampo(IdEnderecoTrabalho, "Endereço de Trabalho do Responsável");
 		if (msg == null) {
 			return;
 		} else {
 			aluno.setEnderecoTrabalho(msg);
 		}
-		
+
 		msg = lecampo(idNumeroTrabalho, "Endereço de Trabalho do Responsável");
 		if (msg == null) {
 			return;
 		} else {
 			aluno.setNumeroTrabalho(Integer.valueOf(idNumeroTrabalho.getText()));
 		}
-		
-		
-		
+
 		msg = lecampo(idCepTrabalho, "CEP do Responsável de Trabalho");
 		if (msg == null) {
 			return;
@@ -545,11 +603,20 @@ public class AlunosCadastroNovoController implements Initializable {
 	}
 
 	public String lecampo(TextField id, String msg) {
-		if (id.getText().isBlank() || id.getText() == null || id.getText().trim().equals("")) {
+		if (id.getText() == null || id.getText().trim().equals("")) {
 			Alerts.showAlert(null, "CAMPO VAZIO", "Entre com o valor do " + msg, AlertType.ERROR);
 			return null;
 		} else {
 			return id.getText();
+		}
+	}
+
+	public String lecampo2(String id, String msg) {
+		if (id == null || id.trim().equals("")) {
+			Alerts.showAlert(null, "CAMPO VAZIO", "Entre com o valor do " + msg, AlertType.ERROR);
+			return null;
+		} else {
+			return id;
 		}
 	}
 
