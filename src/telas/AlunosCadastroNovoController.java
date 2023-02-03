@@ -1,6 +1,8 @@
 package telas;
 
 import java.net.URL;
+import java.sql.Date;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -16,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.util.StringConverter;
 import model.dao.AlunoDao;
 import model.dao.DaoFactory;
 import model.entities.Aluno;
@@ -24,6 +27,7 @@ import utilAlerts.CPF;
 import utilAlerts.Constraints;
 
 public class AlunosCadastroNovoController implements Initializable {
+	final String pattern = "dd/MM/yyyy";
 	public Aluno aluno = new Aluno();
 	@FXML
 	private ToggleGroup GrupoAlergia;
@@ -87,6 +91,9 @@ public class AlunosCadastroNovoController implements Initializable {
 
 	@FXML
 	private ComboBox<String> idAnoEscolarAluno;
+
+	@FXML
+	private ComboBox<String> idRenda;
 
 	@FXML
 	private TextField idBairroAluno;
@@ -155,7 +162,7 @@ public class AlunosCadastroNovoController implements Initializable {
 	private TextField idCpfResponsavel;
 
 	@FXML
-	private TextField idDataCadastro;
+	private DatePicker idDataCadastro;
 
 	@FXML
 	private DatePicker idDataNascimentoAluno;
@@ -278,14 +285,45 @@ public class AlunosCadastroNovoController implements Initializable {
 	@FXML
 	private TextField idTelFixoAluno;
 
+	StringConverter<LocalDate> converter = new StringConverter<LocalDate>() {
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
+
+		@Override
+		public String toString(LocalDate date) {
+			if (date != null) {
+				return dateFormatter.format(date);
+			} else {
+				return "";
+			}
+		}
+
+		@Override
+		public LocalDate fromString(String string) {
+			if (string != null && !string.isEmpty()) {
+				return LocalDate.parse(string, dateFormatter);
+			} else {
+				return null;
+			}
+		}
+	};
+
 	@FXML
 	void onCpfFormat(ActionEvent event) {
 		final TextField source = (TextField) event.getSource();
-		String msg = lecampo2(source.getText(), "CPF");
+		String msg = leString(source.getText(), "CPF");
 		if (msg == null) {
 			return;
 		} else {
 			source.setText(CPF.formartCpf(msg));
+		}
+	}
+
+	private String leString(String id, String msg) {
+		if (id == null || id.trim().equals("")) {
+			Alerts.showAlert(null, "CAMPO VAZIO", "Entre com o valor do " + msg, AlertType.ERROR);
+			return null;
+		} else {
+			return id;
 		}
 	}
 
@@ -339,13 +377,13 @@ public class AlunosCadastroNovoController implements Initializable {
 		idRgResponsavel.clear();
 		idRuaAluno.clear();
 		idTelFixoAluno.clear();
-
 		aluno = new Aluno();
+		
 	}
 
 	@FXML
-	void onButtonSalvarAction(ActionEvent event) {
-
+	void onButtonSalvarAction(ActionEvent event) throws ParseException {
+		java.sql.Date data;
 		String msg = new String();
 		msg = lecampo(idNomeAluno, "Nome do Aluno");
 		if (msg == null) {
@@ -354,11 +392,11 @@ public class AlunosCadastroNovoController implements Initializable {
 			aluno.setNomeAluno(msg);
 		}
 
-		msg = lecampo(idDataCadastro, "Data do Cadastro");
-		if (msg == null) {
+		data = ledata(idDataCadastro.getValue(), "Data do Cadastro");
+		if (data == null) {
 			return;
 		} else {
-			aluno.setDataCadastro(msg);
+			aluno.setDataCadastro(data);
 		}
 		msg = lecampo(idRgAluno, "RG do Aluno");
 		if (msg == null) {
@@ -374,9 +412,12 @@ public class AlunosCadastroNovoController implements Initializable {
 			aluno.setCpfAluno(idCpfAluno.getText());
 		}
 
-		LocalDate value = idDataNascimentoAluno.getValue();
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		aluno.setDataNascimentoAluno(dtf.format(value));
+		data = ledata(idDataNascimentoAluno.getValue(), "Data de Nascimento");
+		if (data == null) {
+			return;
+		} else {
+			aluno.setDataNascimentoAluno(data);
+		}
 
 		aluno.setSexo(idSexoAluno.getValue());
 
@@ -386,7 +427,7 @@ public class AlunosCadastroNovoController implements Initializable {
 		if (msg == null) {
 			return;
 		} else {
-			aluno.setNumeroRuaAluno(Integer.valueOf(IdNumeroRuaAluno.getText()));
+			aluno.setNumeroRuaAluno(IdNumeroRuaAluno.getText());
 		}
 		msg = lecampo(idBairroAluno, "Bairro do Aluno");
 		if (msg == null) {
@@ -511,11 +552,11 @@ public class AlunosCadastroNovoController implements Initializable {
 			aluno.setEnderecoTrabalho(msg);
 		}
 
-		msg = lecampo(idNumeroTrabalho, "Endereço de Trabalho do Responsável");
+		msg = lecampo(idNumeroTrabalho, "Número do Endereço de Trabalho do Responsável");
 		if (msg == null) {
 			return;
 		} else {
-			aluno.setNumeroTrabalho(Integer.valueOf(idNumeroTrabalho.getText()));
+			aluno.setNumeroTrabalho(idNumeroTrabalho.getText());
 		}
 
 		msg = lecampo(idCepTrabalho, "CEP do Responsável de Trabalho");
@@ -528,9 +569,11 @@ public class AlunosCadastroNovoController implements Initializable {
 		if (msg == null) {
 			return;
 		} else {
-			aluno.setNumeroPessoasNaMoradia(Integer.valueOf(idNumeroPessoasMoradia.getText()));
+			aluno.setNumeroPessoasNaMoradia(idNumeroPessoasMoradia.getText());
 
 		}
+		aluno.setRendaFamiliar(idRenda.getValue());
+
 		if (radioResult(GrupoAlergia).equals("SIM")) {
 			msg = lecampo(idAlergiaQual, "Tipo de Alergia");
 			if (msg == null) {
@@ -579,7 +622,7 @@ public class AlunosCadastroNovoController implements Initializable {
 		if (msg == null) {
 			return;
 		} else {
-			aluno.setNumeroNIS(Integer.valueOf(idNumeroNIS.getText()));
+			aluno.setNumeroNIS(idNumeroNIS.getText());
 		}
 
 		aluno.setEncaminhaOutra(idEncaminhaOutraTxt.getText());
@@ -592,14 +635,21 @@ public class AlunosCadastroNovoController implements Initializable {
 				aluno.setEncaminhaOutra(msg);
 			}
 		}
-//		System.out.println(aluno.toString());
 		conectar_salvar(aluno);
 	}
 
 	public void conectar_salvar(Aluno aluno) {
-
 		AlunoDao alunodao = DaoFactory.createAlunoDao();
 		alunodao.insert(aluno);
+	}
+
+	private Date ledata(LocalDate localDate, String msg) throws ParseException {
+		if (localDate == null || localDate.equals("")) {
+			Alerts.showAlert(null, "CAMPO VAZIO", "Entre com o valor do " + msg, AlertType.ERROR);
+			return null;
+		} else {
+			return java.sql.Date.valueOf(localDate);
+		}
 	}
 
 	public String lecampo(TextField id, String msg) {
@@ -611,15 +661,6 @@ public class AlunosCadastroNovoController implements Initializable {
 		}
 	}
 
-	public String lecampo2(String id, String msg) {
-		if (id == null || id.trim().equals("")) {
-			Alerts.showAlert(null, "CAMPO VAZIO", "Entre com o valor do " + msg, AlertType.ERROR);
-			return null;
-		} else {
-			return id;
-		}
-	}
-
 	public String radioResult(ToggleGroup rB) {
 		RadioButton selectedRadioButton = (RadioButton) rB.getSelectedToggle();
 		String toogleGroupValue = selectedRadioButton.getText();
@@ -628,22 +669,33 @@ public class AlunosCadastroNovoController implements Initializable {
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
+
+
 		idSexoAluno.getItems().addAll("Masculino", "Feminino", "Não declarado");
 		idSexoAluno.setValue("Masculino");
 
 		idPeriodoAluno.getItems().addAll("Matutino", "Vespertino");
-		idPeriodoAluno.setValue("Período ...");
+		idPeriodoAluno.setValue("Matutino");
+
+		idRenda.getItems().addAll("Menor que 2.0 SM", "Entre 2.0 e 3.0 SM", "Entre 3.0 e 4.0 SM", "Entre 4.0 e 5.0 SM",
+				"Maior que 5.0 SM");
+		idRenda.setValue("Menor que 2.0 SM");
 
 		idAnoEscolarAluno.getItems().addAll("Nenhuma", "Primeira", "Segunda", "Terceira", "Quarta", "Quinta", "Sexta",
 				"Oitava");
-		idAnoEscolarAluno.setValue("Série ...");
+		idAnoEscolarAluno.setValue("Primeira");
 
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		LocalDate localDate = LocalDate.now();
-		idDataCadastro.setText(dtf.format(localDate));
-		idDataNascimentoAluno.setValue(localDate);
-		aluno.setSituacao("Em espera");
+		idDataNascimentoAluno.setConverter(converter);
+		idDataNascimentoAluno.setPromptText(pattern.toLowerCase());
+
+		idDataCadastro.setConverter(converter);
+		idDataCadastro.setPromptText(pattern.toLowerCase());
+
+		idDataCadastro.setValue(LocalDate.now());
+
+		aluno.setSituacao("Em Espera");
 		aluno.setMoradia("Própria");
+		
 		aluno.setAlergia("NÃo");
 		aluno.setDeficiencia("NÃO");
 		aluno.setCirurgia("NÃO");
@@ -653,11 +705,9 @@ public class AlunosCadastroNovoController implements Initializable {
 		aluno.setBeneficio("NÃO");
 		aluno.setCadastroUnico("NÃO");
 		aluno.setEncaminha("Vontade própria");
-		aluno.setDataMatricula("");
-		aluno.setDataExclusao("");
 		aluno.setTurmaRegular("Nenhuma");
 		aluno.setTurmaEspecial("Nenhuma");
-		aluno.setRendaFamiliar("um salário");
+		
 
 		Constraints.setTextFieldInteger(IdNumeroRuaAluno);
 		Constraints.setTextFieldInteger(idNumeroPessoasMoradia);
@@ -758,7 +808,6 @@ public class AlunosCadastroNovoController implements Initializable {
 		// controlando o tamanho dos campos
 
 		Constraints.setTextFieldMaxLength(idNomeAluno, 60);
-		Constraints.setTextFieldMaxLength(idDataCadastro, 10);
 		Constraints.setTextFieldMaxLength(idRgAluno, 15);
 		Constraints.setTextFieldMaxLength(idCpfAluno, 15);
 		Constraints.setTextFieldMaxLength(idRuaAluno, 60);
@@ -782,6 +831,7 @@ public class AlunosCadastroNovoController implements Initializable {
 		Constraints.setTextFieldMaxLength(idCpfResponsavel, 15);
 		Constraints.setTextFieldMaxLength(idCelularResponsavel, 15);
 		Constraints.setTextFieldMaxLength(IdEnderecoTrabalho, 60);
+		Constraints.setTextFieldMaxLength(idNumeroTrabalho, 4);
 		Constraints.setTextFieldMaxLength(idCepTrabalho, 20);
 		Constraints.setTextFieldMaxLength(idNumeroPessoasMoradia, 2);
 		Constraints.setTextFieldMaxLength(idAlergiaQual, 60);

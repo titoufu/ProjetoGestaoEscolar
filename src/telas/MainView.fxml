@@ -39,8 +39,8 @@
                     <MenuItem fx:id="menuItemRelatoriosAlunosMatriculados" mnemonicParsing="false" onAction="#onMenuItemRelatoriosAlunosMatriculados" text="Alunos Matricuados" />
                         <MenuItem fx:id="menuItemRelatoriosAlunosEmEspera" mnemonicParsing="false" onAction="#onMenuItemRelatoriosAlunosEmEspera" text="Alunos na Fila de Espera" />
                         <MenuItem fx:id="menuItemRelatoriosExAlunos" mnemonicParsing="false" onAction="#onMenuItemRelatoriosExAlunos" text="Alunos Desligados" />
-                        <MenuItem fx:id="menuItemRelatorioDiario" mnemonicParsing="false" onAction="#onMenuItemRelatorioDiario" onMenuValidation="#onMenuItemRelatorioDiario" text="Diário de Classe" />
-                        <MenuItem fx:id="menuItemRelatoriosMatriz" mnemonicParsing="false" onAction="#onMenuItemRelatoriosMatrizProfessor" text="Matriz de Horário Professor" />
+                        <MenuItem fx:id="menuItemRelatorioDiario" mnemonicParsing="false" onAction="#onMenuItemRelatorioDiario" onMenuValidation="#onMenuItemRelatorioDiario" text="Relatorio Turmas" />
+                        <MenuItem fx:id="menuItemRelatoriosMatriz" mnemonicParsing="false" onAction="#onMenuItemRelatoriosPMU" text="Relatorio PMU" />
                         <MenuItem fx:id="menuItemRelatoriosMatriz1" mnemonicParsing="false" onAction="#onMenuItemRelatoriosMatrizAluno" text="Matriz de Horário Aluno" />
                   </items>
                 </Menu>

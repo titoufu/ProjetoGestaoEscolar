@@ -2,8 +2,8 @@ package telas;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -20,9 +20,9 @@ import model.dao.DaoFactory;
 import model.entities.Aluno;
 import utilAlerts.Alerts;
 import utilAlerts.CPF;
+import utilAlerts.DateUtil;
 
 public class AlunosMatriculaController implements Initializable {
-
 
 	Aluno aluno = new Aluno();
 
@@ -84,10 +84,11 @@ public class AlunosMatriculaController implements Initializable {
 	@FXML
 	void onButtonDesligar(ActionEvent event) {
 
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		LocalDate localDate = LocalDate.now();
-		idDataDeslValue.setText(dtf.format(localDate));
-		aluno.setDataExclusao(idDataDeslValue.getText());
+		LocalDate dataDesl = LocalDate.now();
+		idDataDeslValue.setText(DateUtil.dateShort(dataDesl));
+		
+		aluno.setDataExclusao(java.sql.Date.valueOf(dataDesl));
+		
 		aluno.setSituacao("Desligado");
 		AlunoDao alunodao = DaoFactory.createAlunoDao();
 		alunodao.update(aluno);
@@ -105,11 +106,12 @@ public class AlunosMatriculaController implements Initializable {
 		// verificando se houve mudança na situaão do matricula em turma regular
 
 		if (!idComboTurmaRegular.getValue().equals(aluno.getTurmaRegular())) {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			LocalDate localDate = LocalDate.now();
-			idDataMatriValue.setText(dtf.format(localDate));
+			idDataMatriValue.setText(DateUtil.dateShort(localDate));
 		}
-		aluno.setDataMatricula(idDataMatriValue.getText());
+		LocalDate dataMatr = DateUtil.fromStringToLocalDate(idDataMatriValue.getText());
+		aluno.setDataMatricula(Date.valueOf(dataMatr));
+
 		aluno.setSituacao("Matriculado");
 		aluno.setTurmaRegular(idComboTurmaRegular.getValue());
 		aluno.setTurmaEspecial(idComboTurmaEspecial.getValue());
@@ -142,13 +144,35 @@ public class AlunosMatriculaController implements Initializable {
 				aluno = alunodao.findByCpf(cpf);
 				idNomeValue.setText(aluno.getNomeAluno());
 
-				idDataDeslValue.setText(aluno.getDataExclusao());
-				idDataMatriValue.setText(aluno.getDataMatricula());
-				idDataCadastroValue.setText(aluno.getDataCadastro());
-				idDataNascValue.setText(aluno.getDataNascimentoAluno());
-				idDataSituacaoValue.setText(aluno.getSituacao());
-				idTurmaRegularValue.setText(aluno.getTurmaRegular());
-				idTurmaEspecialValue.setText(aluno.getTurmaEspecial());
+				if (aluno.getDataExclusao() != null)
+					idDataDeslValue.setText(aluno.getDataExclusao().toString());
+				else {
+					idDataDeslValue.setText(" ");
+				}
+				if (aluno.getDataMatricula() != null) {
+					Date x = aluno.getDataMatricula();
+					String y = DateUtil.fromDateToString(x);
+					idDataMatriValue.setText(y);
+				} else {
+					idDataMatriValue.setText(" ");
+				}
+				if (aluno.getDataCadastro() != null) {
+					Date x = aluno.getDataCadastro();
+					String y = DateUtil.fromDateToString(x);
+					idDataCadastroValue.setText(y);
+				} else {
+					idDataCadastroValue.setText(" ");
+				}
+				if (aluno.getDataNascimentoAluno() != null) {
+					Date x = aluno.getDataNascimentoAluno();
+					String y = DateUtil.fromDateToString(x);
+					idDataNascValue.setText(y);
+				} else {
+					idDataNascValue.setText(" ");
+				}
+				idDataSituacaoValue.setText(aluno.getSituacao().toString());
+				idTurmaRegularValue.setText(aluno.getTurmaRegular().toString());
+				idTurmaEspecialValue.setText(aluno.getTurmaEspecial().toString());
 			}
 		}
 	}

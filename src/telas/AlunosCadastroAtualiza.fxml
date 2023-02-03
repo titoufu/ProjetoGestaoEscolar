@@ -90,11 +90,6 @@
                                           <Insets right="10.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="idDataCadastro" prefHeight="25.0" prefWidth="96.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets right="10.0" />
-                                       </GridPane.margin>
-                                    </TextField>
                                     <TextField fx:id="idId" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="10.0" />
@@ -128,6 +123,7 @@
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
+                                    <DatePicker fx:id="idDataCadastro" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                  </children>
                                  <padding>
                                     <Insets top="10.0" />
@@ -594,9 +590,10 @@
                               </GridPane>
                               <GridPane>
                                  <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="198.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="42.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="284.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="268.0" minWidth="10.0" prefWidth="215.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="72.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="271.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="161.0" />
                                  </columnConstraints>
                                  <rowConstraints>
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -618,6 +615,16 @@
                                           <Insets bottom="5.0" top="5.0" />
                                        </GridPane.margin>
                                     </TextField>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="280.0" text="Qual a Renda Familiar:" GridPane.columnIndex="2">
+                                       <GridPane.margin>
+                                          <Insets right="20.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <ComboBox fx:id="idRenda" prefHeight="25.0" prefWidth="190.0" GridPane.columnIndex="3">
+                                       <GridPane.margin>
+                                          <Insets right="20.0" />
+                                       </GridPane.margin>
+                                    </ComboBox>
                                  </children>
                               </GridPane>
                               <Label text="3.0 - INFORMAÇÕES DA SAÚDE DO ATENDIDO">

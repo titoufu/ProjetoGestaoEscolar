@@ -24,7 +24,8 @@ public class AlunoDaoJDBC implements AlunoDao {
 
 	@Override
 	public void insert(Aluno obj) {
-		System.out.print("  XXXXXXXX  "+obj.toString());
+		System.out.println(obj.toString());
+
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement(
@@ -46,14 +47,14 @@ public class AlunoDaoJDBC implements AlunoDao {
 					Statement.RETURN_GENERATED_KEYS);
 
 			st.setString(1, obj.getNomeAluno());
-			st.setString(2, obj.getDataCadastro());
+			st.setDate(2, obj.getDataCadastro());
 			st.setString(3, obj.getSituacao());
 			st.setString(4, obj.getRgAluno());
 			st.setString(5, obj.getCpfAluno());
-			st.setString(6, obj.getDataNascimentoAluno());
+			st.setDate(6, obj.getDataNascimentoAluno());
 			st.setString(7, obj.getSexo());
 			st.setString(8, obj.getNomeRuaAluno());
-			st.setInt(9, obj.getNumeroRuaAluno());
+			st.setString(9, obj.getNumeroRuaAluno());
 			st.setString(10, obj.getBairroAluno());
 			st.setString(11, obj.getCepAluno());
 			st.setString(12, obj.getCelularAluno());
@@ -75,10 +76,10 @@ public class AlunoDaoJDBC implements AlunoDao {
 			st.setString(28, obj.getCpfResponsavel());
 			st.setString(29, obj.getCelularResponsavel());
 			st.setString(30, obj.getEnderecoTrabalho());
-			st.setInt(31, obj.getNumeroTrabalho());
+			st.setString(31, obj.getNumeroTrabalho());
 			st.setString(32, obj.getCepTrabalho());
 			st.setString(33, obj.getMoradia());
-			st.setInt(34, obj.getNumeroPessoasNaMoradia());
+			st.setString(34, obj.getNumeroPessoasNaMoradia());
 			st.setString(35, obj.getAlergia());
 			st.setString(36, obj.getAlergiaQual());
 			st.setString(37, obj.getDeficiencia());
@@ -92,30 +93,34 @@ public class AlunoDaoJDBC implements AlunoDao {
 			st.setString(45, obj.getBolsaFamilia());
 			st.setString(46, obj.getBeneficio());
 			st.setString(47, obj.getCadastroUnico());
-			st.setInt(48, obj.getNumeroNIS());
+			st.setString(48, obj.getNumeroNIS());
 			st.setString(49, obj.getEncaminha());
 			st.setString(50, obj.getEncaminhaOutra());
-			st.setString(51, obj.getDataMatricula());
-			st.setString(52, obj.getDataExclusao());
+			st.setDate(51, obj.getDataMatricula());
+			st.setDate(52, obj.getDataExclusao());
 			st.setString(53, obj.getTurmaRegular());
 			st.setString(54, obj.getTurmaEspecial());
 			st.setString(55, obj.getRendaFamiliar());
 			int rowsAffected = st.executeUpdate();
 
 			if (rowsAffected > 0) {
+				JOptionPane.showMessageDialog(null, "Sucesso no Cadastro!");
 				ResultSet rs = st.getGeneratedKeys();
 				if (rs.next()) {
 					int id = rs.getInt(1);
 					obj.setId(id);
 				} else {
-					JOptionPane.showMessageDialog(null, "Sucesso no Cadastro!");
 					DB.closeResultSet(rs);
 				}
 			} else {
+				JOptionPane.showMessageDialog(null, "Sucesso no Cadastro!");
 				throw new DbException("Unexpected error! No rows affected!");
+
 			}
 		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Erro, possível CPF já cadastrado!");
 			throw new DbException(e.getMessage());
+
 		} finally {
 			DB.closeStatement(st);
 		}
@@ -136,19 +141,19 @@ public class AlunoDaoJDBC implements AlunoDao {
 							+ "NumeroPessoasNaMoradia=?, Alergia=?, AlergiaQual=?, Deficiencia=?, "
 							+ "DeficienciaQual=?, Cirurgia=?, CirurgiaQual=?, Doenca=?, DoencaQual=?, "
 							+ "Remedio=?, RemedioQual=?, BolsaFamilia=?, Beneficio=?, CadastroUnico=?, "
-							+ "NumeroNIS=?, Encaminha=?, EncaminhaOutra=?, " 
+							+ "NumeroNIS=?, Encaminha=?, EncaminhaOutra=?, "
 							+ "DataMatricula=?, DataExclusao=?, TurmaRegular=? ,TurmaEspecial=? , RendaFamiliar=? "
 							+ "WHERE id=? ");
-					
+
 			st.setString(1, obj.getNomeAluno());
-			st.setString(2, obj.getDataCadastro());
+			st.setDate(2, obj.getDataCadastro());
 			st.setString(3, obj.getSituacao());
 			st.setString(4, obj.getRgAluno());
 			st.setString(5, obj.getCpfAluno());
-			st.setString(6, obj.getDataNascimentoAluno());
+			st.setDate(6, obj.getDataNascimentoAluno());
 			st.setString(7, obj.getSexo());
 			st.setString(8, obj.getNomeRuaAluno());
-			st.setInt(9, obj.getNumeroRuaAluno());
+			st.setString(9, obj.getNumeroRuaAluno());
 			st.setString(10, obj.getBairroAluno());
 			st.setString(11, obj.getCepAluno());
 			st.setString(12, obj.getCelularAluno());
@@ -170,10 +175,10 @@ public class AlunoDaoJDBC implements AlunoDao {
 			st.setString(28, obj.getCpfResponsavel());
 			st.setString(29, obj.getCelularResponsavel());
 			st.setString(30, obj.getEnderecoTrabalho());
-			st.setInt(31, obj.getNumeroTrabalho());
+			st.setString(31, obj.getNumeroTrabalho());
 			st.setString(32, obj.getCepTrabalho());
 			st.setString(33, obj.getMoradia());
-			st.setInt(34, obj.getNumeroPessoasNaMoradia());
+			st.setString(34, obj.getNumeroPessoasNaMoradia());
 			st.setString(35, obj.getAlergia());
 			st.setString(36, obj.getAlergiaQual());
 			st.setString(37, obj.getDeficiencia());
@@ -187,11 +192,11 @@ public class AlunoDaoJDBC implements AlunoDao {
 			st.setString(45, obj.getBolsaFamilia());
 			st.setString(46, obj.getBeneficio());
 			st.setString(47, obj.getCadastroUnico());
-			st.setInt(48, obj.getNumeroNIS());
+			st.setString(48, obj.getNumeroNIS());
 			st.setString(49, obj.getEncaminha());
 			st.setString(50, obj.getEncaminhaOutra());
-			st.setString(51, obj.getDataMatricula());
-			st.setString(52, obj.getDataExclusao());
+			st.setDate(51, obj.getDataMatricula());
+			st.setDate(52, obj.getDataExclusao());
 			st.setString(53, obj.getTurmaRegular());
 			st.setString(54, obj.getTurmaEspecial());
 			st.setString(55, obj.getRendaFamiliar());
@@ -199,6 +204,7 @@ public class AlunoDaoJDBC implements AlunoDao {
 
 			st.executeUpdate();
 		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Algo deu errado, atualize  os campos!");
 			throw new DbException(e.getMessage());
 		} finally {
 			DB.closeStatement(st);
@@ -233,14 +239,14 @@ public class AlunoDaoJDBC implements AlunoDao {
 				Aluno obj = new Aluno();
 				obj.setId(rs.getInt("id"));
 				obj.setNomeAluno(rs.getString("NomeAluno"));
-				obj.setDataCadastro(rs.getString("DataCadastro"));
+				obj.setDataCadastro(rs.getDate("DataCadastro"));
 				obj.setSituacao(rs.getString("Situacao"));
 				obj.setRgAluno(rs.getString("RgAluno"));
 				obj.setCpfAluno(rs.getString("CpfAluno"));
-				obj.setDataNascimentoAluno(rs.getString("DataNascimentoAluno"));
+				obj.setDataNascimentoAluno(rs.getDate("DataNascimentoAluno"));
 				obj.setSexo(rs.getString("Sexo"));
 				obj.setNomeRuaAluno(rs.getString("NomeRuaAluno"));
-				obj.setNumeroRuaAluno(rs.getInt("NumeroRuaAluno"));
+				obj.setNumeroRuaAluno(rs.getString("NumeroRuaAluno"));
 				obj.setBairroAluno(rs.getString("BairroAluno"));
 				obj.setCepAluno(rs.getString("CepAluno"));
 				obj.setCelularAluno(rs.getString("CelularAluno"));
@@ -262,10 +268,10 @@ public class AlunoDaoJDBC implements AlunoDao {
 				obj.setCpfResponsavel(rs.getString("CpfResponsavel"));
 				obj.setCelularResponsavel(rs.getString("CelularResponsavel"));
 				obj.setEnderecoTrabalho(rs.getString("EnderecoTrabalho"));
-				obj.setNumeroTrabalho(rs.getInt("NumeroTrabalho"));
+				obj.setNumeroTrabalho(rs.getString("NumeroTrabalho"));
 				obj.setCepTrabalho(rs.getString("CepTrabalho"));
 				obj.setMoradia(rs.getString("Moradia"));
-				obj.setNumeroPessoasNaMoradia(rs.getInt("NumeroPessoasNaMoradia"));
+				obj.setNumeroPessoasNaMoradia(rs.getString("NumeroPessoasNaMoradia"));
 				obj.setAlergia(rs.getString("Alergia"));
 				obj.setAlergiaQual(rs.getString("AlergiaQual"));
 				obj.setDeficiencia(rs.getString("Deficiencia"));
@@ -279,11 +285,11 @@ public class AlunoDaoJDBC implements AlunoDao {
 				obj.setBolsaFamilia(rs.getString("BolsaFamilia"));
 				obj.setBeneficio(rs.getString("Beneficio"));
 				obj.setCadastroUnico(rs.getString("CadastroUnico"));
-				obj.setNumeroNIS(rs.getInt("NumeroNIS"));
+				obj.setNumeroNIS(rs.getString("NumeroNIS"));
 				obj.setEncaminha(rs.getString("Encaminha"));
 				obj.setEncaminhaOutra(rs.getString("EncaminhaOutra"));
-				obj.setDataMatricula(rs.getString("DataMatricula"));
-				obj.setDataExclusao(rs.getString("DataExclusao"));
+				obj.setDataMatricula(rs.getDate("DataMatricula"));
+				obj.setDataExclusao(rs.getDate("DataExclusao"));
 				obj.setTurmaEspecial(rs.getString("TurmaEspecial"));
 				obj.setTurmaRegular(rs.getString("TurmaRegular"));
 				obj.setRendaFamiliar(rs.getString("RendaFamiliar"));
