@@ -47,9 +47,4 @@ public class DateUtil {
 		String date_string = date_format.format(date);
 		return date_string;
 	}
-	
-	public static Date fromStringToDate(String datain) {
-		Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(datain);  
-	}
-
 }

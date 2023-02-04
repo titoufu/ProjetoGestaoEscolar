@@ -11,13 +11,11 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
-import org.apache.commons.collections.map.HashedMap;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.DatePicker;
 import javafx.util.StringConverter;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -28,6 +26,7 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import utilAlerts.Alerts;
+import utilAlerts.DateUtil;
 
 public class RelatorioPrefeituraController implements Initializable {
 	final String pattern = "dd/MM/yyyy";
@@ -95,12 +94,16 @@ public class RelatorioPrefeituraController implements Initializable {
 			updateQuery.setText(sql);
 			jdesign.setQuery(updateQuery);
 			
+			// passando parametro para o Java reports
+			
 			HashMap<String,Object>hm= new HashMap<String,Object>();
-			hm.put("dataInicial",dataIni);
-			hm.put("dataFinal",dataFin);
+			String dataInicio=DateUtil.dateShort(localDateInicial);
+			String dataFim=DateUtil.dateShort(localDateFinal);
+			hm.put("dataInicial",dataInicio);
+			hm.put("DataFinal",dataFim);
 
 			JasperReport jreport = JasperCompileManager.compileReport(jdesign);
-			JasperPrint jprint = JasperFillManager.fillReport(jreport, null, con);
+			JasperPrint jprint = JasperFillManager.fillReport(jreport,hm, con);
 			JasperViewer.viewReport(jprint, false);
 
 			System.out.println(sql);

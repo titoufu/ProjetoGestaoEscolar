@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -211,27 +210,7 @@ public class MainViewController implements Initializable {
 	@FXML
 	public void onMenuItemRelatoriosPMU() {
 		loadView("/telas/RelatorioPrefeitura.fxml");
-//		try {
-//			Class.forName("com.mysql.cj.jdbc.Driver");
-//			Connection con = DriverManager.getConnection("JDBC:MYSQL://localhost:3306/gestaoescolar", "root",
-//					"1234567");
-//
-//			String sql = "SELECT  NomeAluno,Situacao,DataNascimentoAluno,DataMatricula,DataExclusao,NomeResponsavel,CpfResponsavel,EnderecoTrabalho,NumeroTrabalho,CelularResponsavel FROM aluno WHERE Situacao ='Desligado' OR Situacao='Matriculado' ORDER BY Situacao DESC,NomeAluno ASC" ;
-//			JasperDesign jdesign = JRXmlLoader.load(
-//					"C:\\Users\\jribe\\eclipse-workspace\\MariaLobatoGenteJovem\\src\\JasperReports\\RelatorioPrefeitura.jrxml");
-//			JRDesignQuery updateQuery = new JRDesignQuery();
-//			updateQuery.setText(sql);
-//			jdesign.setQuery(updateQuery);
-//
-//			JasperReport jreport = JasperCompileManager.compileReport(jdesign);
-//			JasperPrint jprint = JasperFillManager.fillReport(jreport, null, con);
-//			JasperViewer.viewReport(jprint, false);
-//
-//			System.out.println(sql);
-//
-//		} catch (Exception e) {
-//			JOptionPane.showMessageDialog(null, e);
-//		}
+
 	}
 
 	public synchronized void loadView(String absoluteName) {

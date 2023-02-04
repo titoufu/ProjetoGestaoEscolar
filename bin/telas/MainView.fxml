@@ -36,7 +36,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Relatorios">
                   <items>
-                    <MenuItem fx:id="menuItemRelatoriosAlunosMatriculados" mnemonicParsing="false" onAction="#onMenuItemRelatoriosAlunosMatriculados" text="Alunos Matricuados" />
+                    <MenuItem fx:id="menuItemRelatoriosAlunosMatriculados" mnemonicParsing="false" onAction="#onMenuItemRelatoriosAlunosMatriculados" text="Alunos Matriculados" />
                         <MenuItem fx:id="menuItemRelatoriosAlunosEmEspera" mnemonicParsing="false" onAction="#onMenuItemRelatoriosAlunosEmEspera" text="Alunos na Fila de Espera" />
                         <MenuItem fx:id="menuItemRelatoriosExAlunos" mnemonicParsing="false" onAction="#onMenuItemRelatoriosExAlunos" text="Alunos Desligados" />
                         <MenuItem fx:id="menuItemRelatorioDiario" mnemonicParsing="false" onAction="#onMenuItemRelatorioDiario" onMenuValidation="#onMenuItemRelatorioDiario" text="Relatorio Turmas" />

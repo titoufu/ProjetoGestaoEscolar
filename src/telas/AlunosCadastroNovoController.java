@@ -592,7 +592,7 @@ public class AlunosCadastroNovoController implements Initializable {
 		}
 		;
 		if (radioResult(GrupoCirurgia).equals("SIM")) {
-			msg = lecampo(idDeficienciaQual, "Tipo de Cirurgia");
+			msg = lecampo(idCirurgiaQual, "Tipo de Cirurgia");
 			if (msg == null) {
 				return;
 			} else {
